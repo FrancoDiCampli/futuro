@@ -36,28 +36,28 @@
     </div>
 </div>
 <div class="flex text-gray-700 flex-wrap w-full ">
-   @foreach ($jobs as $job)
 
+   @foreach ($jobs as $job)
 
         <div class="card w-52 bg-white items-center text-center m-5">
             <div class="logo">
-                <img class="w-28 mx-auto" src="img/logos/pg.png" alt="">
+                <img class="w-28 mx-auto" src="{{recruiter()->enterprise->logo}}" alt="">
             </div>
             <div class="my-10">
-                <h1 class="text-center font-semibold">Procter & Gamble</h1>
+                <h1 class="text-center font-semibold">{{$job->recruiter->name}}</h1>
                 <div class="flex  justify-center">
                     <svg aria-hidden="true" data-prefix="fas" data-icon="map-marker-alt" class="h-4 svg-inline--fa fa-map-marker-alt fa-w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg>
                     <p class="text-xs mx-1">{{$job->city->name}}</p>
                 </div>
             </div>
             <div class="my-10">
-                <h2 class="text-xl text-main-blue font-semibold">Consultor Jr</h2>
-                <p class="text-xs">Logística</p>
+                <h2 class="text-xl text-main-blue font-semibold">{{$job->subcategory->category->name}}</h2>
+                <p class="text-xs">{{$job->subcategory->name}}</p>
             </div>
 
             <div class="flex  justify-center text-xs items-center my-10">
                 <svg aria-hidden="true" data-prefix="fas" data-icon="calendar-alt" class="h-4 svg-inline--fa fa-calendar-alt fa-w-14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>
-                <p class="mx-1">20 Abril 2021</p>
+                <p class="mx-1">{{$job->expired_at->format('d-m-Y')}}</p>
             </div>
         </div>
     @endforeach

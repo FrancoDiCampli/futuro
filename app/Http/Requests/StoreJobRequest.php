@@ -36,12 +36,14 @@ class StoreJobRequest extends FormRequest
             'country'       => 'required',
             'schedule'      => 'required',
             'paid'          => 'required',
+            'pretended'     => 'nullable',
             'skills.*'      =>  ['required', Rule::in(Vacancy::SKILLS)],
             'enterprise'    => 'required|min:1',
             'visible'       => 'required|min:1',
-            'expired_at'    => 'required',
+            'expired_at'    => 'required|date|after:created_at',
             'city_id'       => 'required|exists:cities,id',
             'subcategory_id'=> 'required|exists:subcategories,id',
+            'recruiter_id'  => 'required|exists:recruiters,id',
 
         ];
     }
@@ -53,7 +55,8 @@ class StoreJobRequest extends FormRequest
         $this->merge([
             'enterprise'    => $enterprise,
             'visible'       => $visible,
-            'expired_at'    => Carbon::today()->addDays(30)
+            'expired_at'    => Carbon::today()->addDays(30),
+            'recruiter_id'  => recruiter()->id,
         ]);
     }
 }

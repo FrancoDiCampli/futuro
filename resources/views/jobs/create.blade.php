@@ -24,7 +24,6 @@
             <input class="rounded-full border border-gray-200 text-base w-full px-5 @error('title') border-red-500 @enderror" type="text" placeholder="Titulo"  name="title" id="title" value="{{ old('title') }}">
             @error('title')<span class="text-xs text-red-500 ">{{ $message }}</span>@enderror
         </div>
-
         {{-- Categoria y sub  --}}
         <div class="row flex flex-wrap">
             <div class="px-10 py-5 w-6/12">

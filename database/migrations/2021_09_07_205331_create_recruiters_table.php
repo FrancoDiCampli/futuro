@@ -21,6 +21,7 @@ class CreateRecruitersTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('enterprise_id')->constrained();
             $table->timestamps();
         });
 

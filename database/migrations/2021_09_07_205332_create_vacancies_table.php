@@ -32,6 +32,8 @@ class CreateVacanciesTable extends Migration
             $table->timestamp('expired_at');
             $table->foreignId('city_id')->constrained();
             $table->foreignId('subcategory_id')->constrained();
+            $table->foreignId('recruiter_id')->constrained();
+
             $table->timestamps();
         });
 

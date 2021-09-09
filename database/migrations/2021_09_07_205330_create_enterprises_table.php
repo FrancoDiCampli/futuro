@@ -18,7 +18,6 @@ class CreateEnterprisesTable extends Migration
         Schema::create('enterprises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo');
             $table->integer('employees');
             $table->string('sector');
             $table->string('turn');
@@ -28,6 +27,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('rfc');
             $table->string('business_name');
             $table->foreignId('city_id')->constrained();
+
             $table->timestamps();
         });
 

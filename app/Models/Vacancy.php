@@ -30,6 +30,7 @@ class Vacancy extends Model
         'expired_at',
         'city_id',
         'subcategory_id',
+        'recruiter_id',
     ];
 
     const SKILLS = [
@@ -54,9 +55,11 @@ class Vacancy extends Model
         'id' => 'integer',
         'enterprise' => 'boolean',
         'visible' => 'boolean',
-        'expired_at' => 'timestamp',
+        'expired_at' => 'date',
         'city_id' => 'integer',
         'subcategory_id' => 'integer',
+        'recruiter_id' => 'integer',
+        'skills'   => 'array',
     ];
 
 

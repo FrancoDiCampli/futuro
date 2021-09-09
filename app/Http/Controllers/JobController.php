@@ -10,11 +10,13 @@ use App\Models\Vacancy;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreJobRequest;
 
 class JobController extends Controller
 {
     public function index(){
+
         $jobs =  Vacancy::all();
         return view('jobs.index',compact('jobs'));
     }
@@ -30,10 +32,29 @@ class JobController extends Controller
     }
 
     public function store(StoreJobRequest $request){
-        return $request;
-        $request['expired_at']= Carbon::today()->addDays(30);
-        $request['skills'] = json_encode($request->skills);
-        Vacancy::create($request->all());
+
+        $validated =  $request->validated();
+
+        $job = DB::transaction(function () use ($validated) {
+            return Vacancy::create([
+                        'title'         => $validated['title'],
+                        'description'   => $validated['description'],
+                        'looking_for'   => $validated['looking_for'],
+                        'hiring'        => $validated['hiring'],
+                        'available'     => $validated['available'],
+                        'country'       => $validated['country'],
+                        'schedule'      => $validated['schedule'],
+                        'paid'          => $validated['paid'],
+                        'pretended'     => $validated['pretended'],
+                        'skills'        => $validated['skills'],
+                        'enterprise'    => $validated['enterprise'],
+                        'visible'       => $validated['visible'],
+                        'expired_at'    => $validated['expired_at'],
+                        'city_id'       => $validated['city_id'],
+                        'subcategory_id'=> $validated['subcategory_id'],
+                        'recruiter_id'  => $validated['recruiter_id'],
+            ]);
+        });
 
 
         return redirect()->route('jobs.index');

@@ -18,10 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            CategoryTableSeeder::class,
-            CityTableSeeder::class,
-        ]);
+
 
         User::create([
             'name' => 'admin',
@@ -31,6 +28,11 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        $this->call([
+            CategoryTableSeeder::class,
+            CityTableSeeder::class,
+            RecruiterTableSeeder::class,
+        ]);
         // City::factory()
         // ->count(20)
         // ->create();

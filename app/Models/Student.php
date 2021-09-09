@@ -90,4 +90,8 @@ class Student extends Model
     {
         return $this->belongsTo(\App\Models\User::class);
     }
+
+    public function filable(){
+        return $this->morphTo();
+    }
 }

@@ -46,7 +46,6 @@ models:
 
   Enterprise:
     name: string
-    logo: string
     employees: integer
     sector: string
     turn: string
@@ -122,17 +121,5 @@ models:
     attachable_type: string
 
 
-controllers:
-   Category:
-    index:
-      query: all
-      render: category.index with:categories
-    create:
-      render: category.create
-    store:
-      validate: name
-      save: category
-      redirect: category.index
-    show:
-      render: category.show
+
 

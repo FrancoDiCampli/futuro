@@ -15,7 +15,8 @@ Route::get('/dashboard', function () {
 
 Route::view('main','layouts.main');
 
-Route::resource('category', App\Http\Controllers\CategoryController::class)->except('edit', 'update', 'destroy');
+Route::resource('category', App\Http\Controllers\CategoryController::class);
+Route::resource('enterprises', App\Http\Controllers\EnterpriseController::class)->middleware(['auth']);
 
 Route::resource('jobs',JobController::class)->middleware(['auth']);
 

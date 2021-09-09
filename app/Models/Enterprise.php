@@ -16,7 +16,6 @@ class Enterprise extends Model
      */
     protected $fillable = [
         'name',
-        'logo',
         'employees',
         'sector',
         'turn',
@@ -42,5 +41,14 @@ class Enterprise extends Model
     public function city()
     {
         return $this->belongsTo(\App\Models\City::class);
+    }
+
+    public function recruiters(){
+        return $this->hasMany(\App\Models\Recruiter::class);
+    }
+
+    public function logo()
+    {
+        return $this->morphOne(File::class, 'fileable');
     }
 }
