@@ -9,8 +9,13 @@ module.exports = {
 
     theme: {
         extend: {
+            colors:{
+                'main-blue':'#0F56F3',
+                'lime':'#26ED62'
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                poppins: ['Poppins'],
             },
         },
     },

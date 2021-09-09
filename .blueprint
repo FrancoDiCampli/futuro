@@ -1,0 +1,67 @@
+created:
+    - app/Http/Controllers/CategoryController.php
+    - database/factories/CityFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/SubcategoryFactory.php
+    - database/factories/LanguagesFactory.php
+    - database/factories/SoftwareFactory.php
+    - database/factories/JobFactory.php
+    - database/factories/CouponFactory.php
+    - database/factories/SubscriptionFactory.php
+    - database/factories/EnterpriseFactory.php
+    - database/factories/RecruiterFactory.php
+    - database/factories/VacancyFactory.php
+    - database/factories/StudentFactory.php
+    - database/factories/PostulationFactory.php
+    - database/factories/AttachmentFactory.php
+    - database/migrations/2021_09_07_205322_create_cities_table.php
+    - database/migrations/2021_09_07_205323_create_categories_table.php
+    - database/migrations/2021_09_07_205324_create_subcategories_table.php
+    - database/migrations/2021_09_07_205325_create_languages_table.php
+    - database/migrations/2021_09_07_205326_create_software_table.php
+    - database/migrations/2021_09_07_205327_create_jobs_table.php
+    - database/migrations/2021_09_07_205328_create_coupons_table.php
+    - database/migrations/2021_09_07_205329_create_subscriptions_table.php
+    - database/migrations/2021_09_07_205330_create_enterprises_table.php
+    - database/migrations/2021_09_07_205331_create_recruiters_table.php
+    - database/migrations/2021_09_07_205332_create_vacancies_table.php
+    - database/migrations/2021_09_07_205333_create_students_table.php
+    - database/migrations/2021_09_07_205334_create_postulations_table.php
+    - database/migrations/2021_09_07_205335_create_attachments_table.php
+    - app/Models/City.php
+    - app/Models/Category.php
+    - app/Models/Subcategory.php
+    - app/Models/Languages.php
+    - app/Models/Software.php
+    - app/Models/Job.php
+    - app/Models/Coupon.php
+    - app/Models/Subscription.php
+    - app/Models/Enterprise.php
+    - app/Models/Recruiter.php
+    - app/Models/Vacancy.php
+    - app/Models/Student.php
+    - app/Models/Postulation.php
+    - app/Models/Attachment.php
+    - tests/Feature/Http/Controllers/CategoryControllerTest.php
+    - app/Http/Requests/CategoryStoreRequest.php
+    - resources/views/category/index.blade.php
+    - resources/views/category/create.blade.php
+    - resources/views/category/show.blade.php
+updated:
+    - routes/web.php
+models:
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    City: { name: 'string:400', zip_code: string, prefix: string }
+    Category: { name: string }
+    Subcategory: { name: string, category_id: 'id foreign' }
+    Languages: { name: string }
+    Software: { name: string }
+    Job: { name: string, enterprise: string, ceo: string, city_id: 'id foreign', started_at: date, end_at: date, description: text }
+    Coupon: { name: string, discoount: float }
+    Subscription: { plan: string, started_at: date, end_at: date, paid_at: date }
+    Enterprise: { name: string, logo: string, employees: integer, sector: string, turn: string, website: string, vision: text, description: text, rfc: string, business_name: string, city_id: 'id foreign' }
+    Recruiter: { name: string, email: string, phone: string, user_id: 'id foreign', relationships: { belongsTo: Enterprise } }
+    Vacancy: { title: string, description: text, looking_for: text, hiring: string, available: string, country: string, schedule: string, paid: string, skills: string, enterprise: boolean, visible: boolean, expired_at: timestamp, city_id: 'id foreign', subcategory_id: 'id foreign', relationships: { belongsTo: Recruiter } }
+    Student: { email: string, name: string, last_name: string, password: string, tos: boolean, notification: boolean, title: string, experience: string, university: string, graduated_at: date, average: float, speech: text, available: string, preference: string, skils: string, courses: string, hobbies: string, website: string, birthdate: date, avatar: string, subcategory_id: 'id foreign', city_id: 'id foreign', job_id: 'id foreign', user_id: 'id foreign' }
+    Postulation: { vacancy_id: 'id foreign', student_id: 'id foreign', visible: boolean }
+    Attachment: { path: string, attachable_id: id, attachable_type: string }

@@ -1,5 +1,138 @@
 models:
-  Post:
-    title: string:400
-    content: longtext
-    published_at: nullable timestamp
+  Country:
+    name: string
+
+  State:
+    name: string
+    country_id: id foreign
+
+  City:
+    name: string:400
+    zip_code: string
+    prefix: string
+    state_id: id foreign
+
+  Category:
+    name: string
+
+  Subcategory:
+    name: string
+    category_id: id foreign
+
+  Languages:
+    name: string
+
+  Software:
+    name: string
+
+  Job:
+    name: string
+    enterprise: string
+    ceo: string
+    city_id: id foreign
+    started_at: date
+    end_at: date
+    description: text
+
+  Coupon:
+    name: string
+    discoount: float
+
+  Subscription:
+    plan: string
+    started_at: date
+    end_at: date
+    paid_at: date
+
+  Enterprise:
+    name: string
+    logo: string
+    employees: integer
+    sector: string
+    turn: string
+    website: string
+    vision: text
+    description: text
+    rfc: string
+    business_name: string
+    city_id: id foreign
+
+  Recruiter:
+    name: string
+    email: string
+    phone: string
+    user_id: id foreign
+    relationships:
+      belongsTo: Enterprise
+
+
+  Vacancy:
+    title: string
+    description: text
+    looking_for: text
+    hiring: string
+    available: string
+    country: string
+    schedule: string
+    paid: string
+    pretended: string
+    skills: string
+    enterprise: boolean
+    visible: boolean
+    expired_at: timestamp
+    city_id: id foreign
+    subcategory_id: id foreign
+    relationships:
+      belongsTo: Recruiter
+
+  Student:
+    email: string
+    name: string
+    last_name: string
+    password: string
+    tos: boolean
+    notification: boolean
+    title: string
+    experience: string
+    university: string
+    graduated_at: date
+    average: float
+    speech: text
+    available: string
+    preference: string
+    skils: string
+    courses: string
+    hobbies: string
+    website: string
+    birthdate: date
+    avatar: string
+    subcategory_id: id foreign
+    city_id: id foreign
+    job_id: id foreign
+    user_id: id foreign
+
+  Postulation:
+    vacancy_id: id foreign
+    student_id: id foreign
+    visible: boolean
+
+  Attachment:
+    path: string
+    attachable_id: id
+    attachable_type: string
+
+
+controllers:
+   Category:
+    index:
+      query: all
+      render: category.index with:categories
+    create:
+      render: category.create
+    store:
+      validate: name
+      save: category
+      redirect: category.index
+    show:
+      render: category.show
+
