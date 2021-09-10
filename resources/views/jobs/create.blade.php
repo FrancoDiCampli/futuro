@@ -85,19 +85,19 @@
             <div class="px-10 py-5 w-6/12">
                 <label for="" class="text-base text-main-blue block font-semibold px-5">Experiencia</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none" name="experience" id="">
-                    <option value="Estudiante">Student</option>
-                    <option value="Graduated">Graduated</option>
-                    <option value="first_year">First year</option>
-                    <option value="second_year">Second Year</option>
+                    <option value="Estudiante">Estudiante</option>
+                    <option value="Graduado">Graduado</option>
+                    <option value="1er año">1er año</option>
+                    <option value="2do año">2do año</option>
                 </select>
             </div>
             <div class="px-10 py-5 w-6/12">
                 <label for="" class="text-base text-main-blue block font-semibold px-5">Contratacion</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none" name="hiring" id="">
-                    <option value="permanente">Permanent</option>
-                    <option value="temporary">Temporary</option>
-                    <option value="by_proyect">By Proyect</option>
-                    <option value="scholar">Scholar</option>
+                    <option value="Permanente">Permanente</option>
+                    <option value="Temporario">Temporario</option>
+                    <option value="Por proyecto">Por proyecto</option>
+                    <option value="Becario">Becario</option>
                 </select>
             </div>
         </div>
@@ -108,16 +108,16 @@
                 <label for="" class="text-base text-main-blue block font-semibold px-5">Disponibilidad</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none"
                     name="available" id="">
-                    <option value="full_time">Full time</option>
-                    <option value="half_time">Half time</option>
+                    <option value="Tiempo completo">Tiempo completo</option>
+                    <option value="Medio tiempo">Medio tiempo</option>
                 </select>
             </div>
             <div class="px-10 py-5 w-6/12">
                 <label for="" class="text-base text-main-blue block font-semibold px-5">Horario de preferiencia</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none" name="schedule" id="">
-                    <option value="morning">Morning</option>
-                    <option value="afternoon">Aftenoon</option>
-                    <option value="no_preference">No preference</option>
+                    <option value="Mañana">Mañana</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Sin preferencia">Sin preferencia</option>
                 </select>
             </div>
         </div>

@@ -24,6 +24,7 @@ class CreateVacanciesTable extends Migration
             $table->string('available');
             $table->string('country');
             $table->string('schedule');
+            $table->string('experience');
             $table->string('paid');
             $table->string('pretended')->nullable();
             $table->json('skills');

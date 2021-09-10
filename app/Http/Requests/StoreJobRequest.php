@@ -35,6 +35,7 @@ class StoreJobRequest extends FormRequest
             'available'     => 'required',
             'country'       => 'required',
             'schedule'      => 'required',
+            'experience'    => 'required',
             'paid'          => 'required',
             'pretended'     => 'nullable',
             'skills.*'      =>  ['required', Rule::in(Vacancy::SKILLS)],

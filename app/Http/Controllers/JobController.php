@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Job;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Country;
@@ -44,6 +45,7 @@ class JobController extends Controller
                         'available'     => $validated['available'],
                         'country'       => $validated['country'],
                         'schedule'      => $validated['schedule'],
+                        'experience'    => $validated['experience'],
                         'paid'          => $validated['paid'],
                         'pretended'     => $validated['pretended'],
                         'skills'        => $validated['skills'],
@@ -58,5 +60,10 @@ class JobController extends Controller
 
 
         return redirect()->route('jobs.index');
+    }
+
+    public function show(Vacancy $job){
+
+        return view('jobs.show',compact('job'));
     }
 }

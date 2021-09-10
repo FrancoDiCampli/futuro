@@ -25,6 +25,7 @@ class Vacancy extends Model
         'paid',
         'pretended',
         'skills',
+        'experience',
         'enterprise',
         'visible',
         'expired_at',

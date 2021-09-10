@@ -18,7 +18,7 @@
         <div class="bg-gray-100">
             @include('layouts.navigation')
         </div>
-        <main class="w-10/12 font-poppins mx-auto mt-5">
+        <main class="w-11/12 font-poppins mx-auto mt-5">
            @yield('content')
 
         </main>

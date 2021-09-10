@@ -28,4 +28,8 @@ class City extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
 }
