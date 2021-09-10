@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Enterprise;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -18,15 +19,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Role::create(['name' => 'superadmin']);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'enterprise']);
+        Role::create(['name' => 'recuiter']);
+        Role::create(['name' => 'student']);
 
-
-        User::create([
-            'name' => 'admin',
-            'email' => 'admin@mail.com',
+        $superadmin = User::create([
+            'name' => 'superadmin',
+            'email' => 'superadmin@mail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('asdf1234'),
 
         ]);
+
+        $admin = User::create([
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('asdf1234'),
+        ]);
+
+        $superadmin->assignRole('superadmin');
+        $admin->assignRole('admin');
 
         $this->call([
             CategoryTableSeeder::class,

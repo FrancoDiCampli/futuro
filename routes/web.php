@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// Route::group(['middleware' => ['role:superadmin']], function () {
+//     return view('dashboard');
+// });
+// Route::group(['middleware' => ['role:admin']], function () {
+//     return 'admin';
+// });
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
