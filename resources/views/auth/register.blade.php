@@ -45,6 +45,20 @@
                                 name="password_confirmation" required />
             </div>
 
+            <div class="mt-4">
+                <div class="flex justify-between">
+                    <label class="inline-flex items-center mt-3">
+                        <input type="radio" name="profile" value="empresa" class="form-radio h-5 w-5 text-gray-800" checked><span class="ml-2 text-gray-700">Empresa</span>
+                    </label>
+                    <label class="inline-flex items-center mt-3">
+                        <input type="radio" name="profile" value="estudiante" class="form-radio h-5 w-5 text-gray-800" ><span class="ml-2 text-gray-700">Estudiante</span>
+                    </label>
+                    <label class="inline-flex items-center mt-3">
+                        <input type="radio" name="profile" value="reclutador" class="form-radio h-5 w-5 text-gray-800" ><span class="ml-2 text-gray-700">Reclutador</span>
+                    </label>
+                </div>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}

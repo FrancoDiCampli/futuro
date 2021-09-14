@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
 
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('name');
+            // $table->string('email');
+            // $table->string('name');
             $table->string('last_name');
             $table->string('password');
             $table->boolean('tos');
@@ -40,7 +40,7 @@ class CreateStudentsTable extends Migration
             $table->foreignId('subcategory_id')->constrained();
             $table->foreignId('city_id')->constrained();
             $table->foreignId('job_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            // $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
 

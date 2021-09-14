@@ -35,6 +35,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $with = ['profile'];
+
+
     /**
      * The attributes that should be cast.
      *
@@ -44,9 +47,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function recruiter()
+    public function profile()
     {
-        return $this->hasOne(Recruiter::class);
+      return $this->morphTo();
     }
+
+    public function getHasEmpresaProfileAttribute()
+    {
+      return $this->profile_type == 'App\Models\Enterprise';
+    }
+    public function getHasEstudianteProfileAttribute()
+    {
+        return $this->profile_type == 'App\Models\Student';
+    }
+
+    public function getHasReclutadorProfileAttribute()
+    {
+        return $this->profile_type == 'App\Models\Recruiter';
+    }
+
 
 }

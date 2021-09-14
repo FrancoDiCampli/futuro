@@ -86,9 +86,9 @@ class Student extends Model
         return $this->belongsTo(\App\Models\Job::class);
     }
 
-    public function user()
+    public function profile()
     {
-        return $this->belongsTo(\App\Models\User::class);
+      return $this->morphTo();
     }
 
     public function filable(){

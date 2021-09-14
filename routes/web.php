@@ -1,22 +1,29 @@
 <?php
 
-use App\Http\Controllers\JobController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::group(['middleware' => ['role:superadmin']], function () {
-//     return view('dashboard');
-// });
-// Route::group(['middleware' => ['role:admin']], function () {
-//     return 'admin';
-// });
+Route::group(['middleware' => ['auth']], function () {
+   Route::get('/superadmin',[App\Http\Controllers\ProfileContoller::class,'superadminDashboard'])->name('superadmin.dashboard');
+   Route::get('/admin',[App\Http\Controllers\ProfileContoller::class,'adminDashboard'])->name('admin.dashboard');
+   Route::get('/estudiante',[App\Http\Controllers\ProfileContoller::class,'estudianteDashboard'])->name('estudiante.dashboard');
+   Route::get('/empresa',[App\Http\Controllers\ProfileContoller::class,'empresaDashboard'])->name('empresa.dashboard');
+   Route::get('/reclutador',[App\Http\Controllers\ProfileContoller::class,'reclutadorDashboard'])->name('reclutador.dashboard');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('test',function(){
+    return Auth::user()->roles->first()->name;
+});
 
 Route::view('main','layouts.main');
 

@@ -37,6 +37,10 @@ class Enterprise extends Model
         'city_id' => 'integer',
     ];
 
+    public function profile()
+    {
+      return $this->morphTo();
+    }
 
     public function city()
     {
