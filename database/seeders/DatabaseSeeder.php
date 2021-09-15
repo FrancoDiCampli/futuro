@@ -46,7 +46,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategoryTableSeeder::class,
             CityTableSeeder::class,
-            // RecruiterTableSeeder::class,
+            SoftwareTableSeeder::class,
+            LanguageTableSeeder::class,
         ]);
         // City::factory()
         // ->count(20)

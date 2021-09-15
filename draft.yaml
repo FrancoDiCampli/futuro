@@ -19,7 +19,7 @@ models:
     name: string
     category_id: id foreign
 
-  Languages:
+  Language:
     name: string
 
   Software:

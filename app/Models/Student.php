@@ -15,10 +15,8 @@ class Student extends Model
      * @var array
      */
     protected $fillable = [
-        'email',
-        'name',
+        'first_name',
         'last_name',
-        'password',
         'tos',
         'notification',
         'title',
@@ -29,16 +27,13 @@ class Student extends Model
         'speech',
         'available',
         'preference',
-        'skils',
+        'skills',
         'courses',
         'hobbies',
         'website',
         'birthdate',
-        'avatar',
         'subcategory_id',
         'city_id',
-        'job_id',
-        'user_id',
     ];
 
 
@@ -66,8 +61,7 @@ class Student extends Model
         'birthdate' => 'date',
         'subcategory_id' => 'integer',
         'city_id' => 'integer',
-        'job_id' => 'integer',
-        'user_id' => 'integer',
+
     ];
 
 
@@ -81,17 +75,13 @@ class Student extends Model
         return $this->belongsTo(\App\Models\City::class);
     }
 
-    public function job()
+    public function user()
     {
-        return $this->belongsTo(\App\Models\Job::class);
+        return $this->morphOne(\App\Models\User::class, 'profile');
     }
 
-    public function profile()
+    public function avatar()
     {
-      return $this->morphTo();
-    }
-
-    public function filable(){
-        return $this->morphTo();
+        return $this->morphOne(File::class, 'fileable');
     }
 }

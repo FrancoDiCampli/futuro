@@ -37,9 +37,9 @@ class Enterprise extends Model
         'city_id' => 'integer',
     ];
 
-    public function profile()
+    public function user()
     {
-      return $this->morphTo();
+        return $this->morphOne(\App\Models\User::class, 'profile');
     }
 
     public function city()

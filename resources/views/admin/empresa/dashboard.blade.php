@@ -1,1 +1,1 @@
-<h1>Soy un empresa</h1>
+<h1>Dashboard Empresa</h1>

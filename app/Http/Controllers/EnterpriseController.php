@@ -43,9 +43,9 @@ class EnterpriseController extends Controller
             ]);
         });
 
-
         $enterprise->logo()->make()->upload($validated['logo'], 'logos/'.$enterprise->id, 'logos');
 
+        $enterprise->user()->save(user());
 
         return redirect()->route('jobs.index');
     }

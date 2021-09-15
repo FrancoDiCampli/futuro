@@ -15,10 +15,9 @@ class Recruiter extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
+        'first_name',
+        'last_name',
         'phone',
-        'user_id',
         'enterprise_id'
     ];
 
@@ -29,8 +28,6 @@ class Recruiter extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'user_id' => 'integer',
-        'user_id' => 'integer',
     ];
 
 

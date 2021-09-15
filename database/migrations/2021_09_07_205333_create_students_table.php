@@ -18,9 +18,8 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             // $table->string('email');
-            // $table->string('name');
+            $table->string('first_name');
             $table->string('last_name');
-            $table->string('password');
             $table->boolean('tos');
             $table->boolean('notification');
             $table->string('title');
@@ -31,16 +30,15 @@ class CreateStudentsTable extends Migration
             $table->text('speech');
             $table->string('available');
             $table->string('preference');
-            $table->string('skils');
+            $table->json('skills');
             $table->string('courses');
             $table->string('hobbies');
             $table->string('website');
             $table->date('birthdate');
-            $table->string('avatar');
-            $table->foreignId('subcategory_id')->constrained();
+            $table->float('completed')->nullable();
+            // $table->foreignId('subcategory_id')->constrained();
             $table->foreignId('city_id')->constrained();
-            $table->foreignId('job_id')->constrained();
-            // $table->foreignId('user_id')->constrained();
+           // $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
 
