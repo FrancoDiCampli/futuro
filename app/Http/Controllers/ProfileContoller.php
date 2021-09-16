@@ -8,6 +8,7 @@ use App\Models\State;
 use App\Models\Country;
 use App\Models\Vacancy;
 use App\Models\Category;
+use App\Models\Enterprise;
 use App\Models\Language;
 use App\Models\Software;
 use App\Models\Subcategory;
@@ -40,11 +41,15 @@ class ProfileContoller extends Controller
         $states = State::all();
         $languages = Language::all();
         $software = Software::all();
+        $jobs = Vacancy::all();
         if(!user()->hasEstudianteProfile) return view('admin.estudiante.complet',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
-        return view('admin.estudiante');
+        return view('admin.estudiante.dashboard',compact('jobs'));
     }
     public function reclutadorDashboard(){
-        if(!user()->hasReclutadorProfile) return view('admin.reclutador.complet');
-        return view('admin.reclutador');
+        $enterprises = Enterprise::all();
+        $vacancies = Vacancy::with('postulations')->where('recruiter_id',user()->profile->id)->get();
+
+        if(!user()->hasReclutadorProfile) return view('admin.reclutador.complet',compact('enterprises'));
+        return view('admin.reclutador.dashboard',compact('vacancies'));
     }
 }

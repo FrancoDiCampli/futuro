@@ -12,8 +12,6 @@ class File extends Model
 
     public function upload($file, $path, $category = null)
     {
-
-
         $fullPath = $file->store($path);
 
         $this->fill([

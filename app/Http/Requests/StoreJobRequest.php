@@ -57,7 +57,7 @@ class StoreJobRequest extends FormRequest
             'enterprise'    => $enterprise,
             'visible'       => $visible,
             'expired_at'    => Carbon::today()->addDays(30),
-            'recruiter_id'  => recruiter()->id,
+            'recruiter_id'  => user()->profile->id,
         ]);
     }
 }

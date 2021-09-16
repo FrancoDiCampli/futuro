@@ -38,6 +38,11 @@ class Recruiter extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->morphOne(\App\Models\User::class, 'profile');
+    }
+
+    public function avatar()
+    {
+        return $this->morphOne(File::class, 'fileable');
     }
 }

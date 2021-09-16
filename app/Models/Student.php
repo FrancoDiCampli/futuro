@@ -61,7 +61,7 @@ class Student extends Model
         'birthdate' => 'date',
         'subcategory_id' => 'integer',
         'city_id' => 'integer',
-
+        'skills'   => 'array',
     ];
 
 
@@ -83,5 +83,12 @@ class Student extends Model
     public function avatar()
     {
         return $this->morphOne(File::class, 'fileable');
+    }
+
+    public function postulations()
+    {
+        // return $this->belongsToMany(Vacancy::class);
+        return $this->belongsToMany(Vacancy::class, 'postulations',
+        'student_id','vacancy_id')->withPivot('visible', 'state');
     }
 }

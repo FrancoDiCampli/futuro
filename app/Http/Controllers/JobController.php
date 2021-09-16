@@ -34,6 +34,7 @@ class JobController extends Controller
 
     public function store(StoreJobRequest $request){
 
+
         $validated =  $request->validated();
 
         $job = DB::transaction(function () use ($validated) {
@@ -59,11 +60,18 @@ class JobController extends Controller
         });
 
 
-        return redirect()->route('jobs.index');
+        return redirect()->route('recruiters.index');
     }
 
     public function show(Vacancy $job){
 
         return view('jobs.show',compact('job'));
+    }
+
+    public function postulation(Request $request){
+
+        $vacancy = Vacancy::find($request->vacancy_id);
+        user()->profile->postulations()->attach($vacancy->id,['visible'=>true,'state'=>'new']);
+        return 'done';
     }
 }

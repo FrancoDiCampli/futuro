@@ -78,4 +78,19 @@ class Vacancy extends Model
     {
         return $this->belongsTo(\App\Models\Subcategory::class);
     }
+
+    public function postulations()
+    {
+        // return $this->belongsToMany(Vacancy::class);
+        return $this->belongsToMany(Student::class, 'postulations',
+        'student_id','vacancy_id')->withPivot('visible', 'state');
+    }
+
+    public function news(){
+        return $this->postulations()->having('state','=','new');
+            // return $this->belongsToMany('User','user_works')->withPivot('active')->withTimestamps();
+
+    }
+
+
 }

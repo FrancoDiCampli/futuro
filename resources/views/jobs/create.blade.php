@@ -46,14 +46,17 @@
 
         <div class="row px-10 py-5">
             <label for="" class="text-base text-main-blue block font-semibold px-5">Breve Descripcion</label>
-            <textarea class="border border-gray-200 text-base w-full px-5 focus:outline-none @error('description') border-red-500 @enderror" name="description" id="" cols="30" rows="5" placeholder="¿De qué trata y qué vas a estar haciendo?"></textarea>
+            <textarea class="border border-gray-200 text-base w-full px-5 focus:outline-none @error('description') border-red-500 @enderror" name="description" id="" cols="30" rows="5" placeholder="¿De qué trata y qué vas a estar haciendo?">
+                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, nisi! Sint animi eveniet a? Harum autem ad doloribus in nisi, incidunt accusantium, maiores, eos facere qui exercitationem dolores! Suscipit, iusto.</textarea>
             @error('description')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
 
         </div>
 
         <div class="row px-10 py-5">
             <label for="" class="text-base text-main-blue block font-semibold px-5">Candidato ideal</label>
-            <textarea class="border border-gray-200 text-base w-full px-5 focus:outline-none @error('description') border-red-500 @enderror" name="looking_for" id="" cols="30" rows="5" placeholder="¿Cómo es el candidato ideal para esta vacante?"></textarea>
+
+            <textarea class="border border-gray-200 text-base w-full px-5 focus:outline-none @error('description') border-red-500 @enderror" name="looking_for" id="" cols="30" rows="5" placeholder="¿Cómo es el candidato ideal para esta vacante?">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, nisi! Sint animi eveniet a? Harum autem ad doloribus in nisi, incidunt accusantium, maiores, eos facere qui exercitationem dolores! Suscipit, iusto.</textarea>
             @error('looking_for')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
 
         </div>

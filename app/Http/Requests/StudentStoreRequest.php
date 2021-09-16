@@ -28,23 +28,33 @@ class StudentStoreRequest extends FormRequest
             'first_name'            =>'required',
             'last_name'             =>'required',
             'tos'                   =>'required',
-            'notification'          =>'required',
+            'notification'          =>'nullable',
             'title'                 =>'required',
-            'experience'            =>'required',
-            'university'            =>'required',
-            'graduated_at'          =>'required',
-            'average'               =>'required',
-            'speech'                =>'required',
-            'available'             =>'required',
-            'preference'            =>'required',
-            'skils'                 =>'required',
-            'courses'               =>'required',
-            'hobbies'               =>'required',
-            'website'               =>'required',
+            'experience'            =>'nullable',
+            'university'            =>'nullable',
+            'graduated_at'          =>'nullable',
+            'average'               =>'nullable',
+            'speech'                =>'nullable',
+            'available'             =>'nullable',
+            'preference'            =>'nullable',
+            'skills'                =>'nullable',
+            'courses'               =>'nullable',
+            'hobbies'               =>'nullable',
+            'website'               =>'nullable',
             'birthdate'             =>'required',
-            'avatar'                =>'required',
-            'subcategory_id'        =>'required',
+            'avatar'                =>'nullable',
+            'subcategory_id'        =>'nullable',
             'city_id'               =>'required',
         ];
+    }
+    protected function prepareForValidation()
+    {
+        ($this->has('tos')) ? ($tos = 1) : ($tos = 0);
+        ($this->has('notification')) ? ($notification = 1) : ($notification = 0);
+        $this->merge([
+            'tos'    => $tos,
+            'notification'       => $notification,
+
+        ]);
     }
 }

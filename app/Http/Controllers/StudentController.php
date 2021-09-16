@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function store(StudentStoreRequest $request){
 
 
-        return $validated =  $request->validated();
+        $validated =  $request->validated();
 
         $student = DB::transaction(function () use ($validated) {
             return Student::create([
@@ -33,7 +33,7 @@ class StudentController extends Controller
                             'speech'            =>$validated['speech'],
                             'available'         =>$validated['available'],
                             'preference'        =>$validated['preference'],
-                            'skils'             =>$validated['skils'],
+                            'skills'             =>$validated['skills'],
                             'courses'           =>$validated['courses'],
                             'hobbies'           =>$validated['hobbies'],
                             'website'           =>$validated['website'],

@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             CityTableSeeder::class,
             SoftwareTableSeeder::class,
             LanguageTableSeeder::class,
+            EnterpriseTableSeeder::class,
         ]);
         // City::factory()
         // ->count(20)

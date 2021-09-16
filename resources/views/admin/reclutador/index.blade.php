@@ -26,14 +26,14 @@
                     <svg aria-hidden="true" data-prefix="fas" data-icon="map-marker-alt" class="h-4 svg-inline--fa fa-map-marker-alt fa-w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg>
                     <p class="text-xs mx-1">{{$vacancy->city->name}}</p>
                 </div>
-                <p class="text-xl font-semibold my-5">{{count($vacancy->postulations)}} <span class="font-normal">Aplicantes</span> </p>
+                <p class="text-xl font-semibold my-5">234 <span class="font-normal">Aplicantes</span> </p>
 
                 <div class="mt-5 flex justify-between items-start">
                     <div class="text-main-blue">
                         <h2 class="mb-2">Nuevos</h2>
                         <div class="flex items-center">
                             <svg aria-hidden="true" data-prefix="fas" data-icon="circle" class="h-3 svg-inline--fa fa-circle fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></svg>
-                            <p class="mx-2 text-xl text-gray-700 font-semibold">{{count($vacancy->postulations)}}</p>
+                            <p class="mx-2 text-xl text-gray-700 font-semibold">34</p>
                         </div>
                     </div>
 
