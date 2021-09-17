@@ -30,6 +30,7 @@ class CreateVacanciesTable extends Migration
             $table->json('skills');
             $table->boolean('enterprise');
             $table->boolean('visible');
+            $table->boolean('expired')->default(0);
             $table->timestamp('expired_at');
             $table->foreignId('city_id')->constrained();
             $table->foreignId('subcategory_id')->constrained();

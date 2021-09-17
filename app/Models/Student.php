@@ -85,10 +85,8 @@ class Student extends Model
         return $this->morphOne(File::class, 'fileable');
     }
 
-    public function postulations()
+    public function vacancies()
     {
-        // return $this->belongsToMany(Vacancy::class);
-        return $this->belongsToMany(Vacancy::class, 'postulations',
-        'student_id','vacancy_id')->withPivot('visible', 'state');
+        return $this->belongsToMany(Vacancy::class,'postulations')->withPivot(['state','visible'])->withTimestamps();
     }
 }

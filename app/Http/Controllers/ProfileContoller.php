@@ -10,6 +10,7 @@ use App\Models\Vacancy;
 use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\Language;
+use App\Models\Postulation;
 use App\Models\Software;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
@@ -47,9 +48,9 @@ class ProfileContoller extends Controller
     }
     public function reclutadorDashboard(){
         $enterprises = Enterprise::all();
-        $vacancies = Vacancy::with('postulations')->where('recruiter_id',user()->profile->id)->get();
-
         if(!user()->hasReclutadorProfile) return view('admin.reclutador.complet',compact('enterprises'));
+
+        $vacancies = Vacancy::with('students')->where('recruiter_id',user()->profile->id)->get();
         return view('admin.reclutador.dashboard',compact('vacancies'));
     }
 }

@@ -6,12 +6,18 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StudentStoreRequest;
-
+use App\Models\Postulation;
+use App\Models\Vacancy;
 
 class StudentController extends Controller
 {
     public function index(){
-        return Student::all();
+
+        $postulations = user()->profile->vacancies;
+        // $ids = $postulations->modelKeys();
+        // return $postulations =  Vacancy::whereIn('id',[$ids])->paginate(10);
+
+        return view('admin.estudiante.index',compact('postulations'));
     }
 
     public function store(StudentStoreRequest $request){
@@ -50,4 +56,6 @@ class StudentController extends Controller
 
         return redirect()->route('jobs.index');
     }
+
+
 }

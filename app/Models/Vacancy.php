@@ -28,6 +28,7 @@ class Vacancy extends Model
         'experience',
         'enterprise',
         'visible',
+        'expired',
         'expired_at',
         'city_id',
         'subcategory_id',
@@ -47,6 +48,7 @@ class Vacancy extends Model
         'Comunicación Efectiva'
     ];
 
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -56,6 +58,7 @@ class Vacancy extends Model
         'id' => 'integer',
         'enterprise' => 'boolean',
         'visible' => 'boolean',
+        'expired' => 'boolean',
         'expired_at' => 'date',
         'city_id' => 'integer',
         'subcategory_id' => 'integer',
@@ -63,6 +66,7 @@ class Vacancy extends Model
         'skills'   => 'array',
     ];
 
+    protected $appends=['news','rejected','final'];
 
     public function recruiter()
     {
@@ -79,18 +83,23 @@ class Vacancy extends Model
         return $this->belongsTo(\App\Models\Subcategory::class);
     }
 
-    public function postulations()
+    public function students()
     {
-        // return $this->belongsToMany(Vacancy::class);
-        return $this->belongsToMany(Student::class, 'postulations',
-        'student_id','vacancy_id')->withPivot('visible', 'state');
+        return $this->belongsToMany(Student::class,'postulations')->withPivot(['state','visible'])->withTimestamps();
     }
 
-    public function news(){
-        return $this->postulations()->having('state','=','new');
-            // return $this->belongsToMany('User','user_works')->withPivot('active')->withTimestamps();
+    public function getNewsAttribute(){
 
+        return $this->students()->wherePivot('state','new')->count();
     }
 
+    public function getRejectedAttribute(){
+
+        return $this->students()->wherePivot('state','rejected')->count();
+    }
+    public function getFinalAttribute(){
+
+        return $this->students()->wherePivot('state','final')->count();
+    }
 
 }

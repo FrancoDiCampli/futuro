@@ -41,6 +41,7 @@ class StoreJobRequest extends FormRequest
             'skills.*'      =>  ['required', Rule::in(Vacancy::SKILLS)],
             'enterprise'    => 'required|min:1',
             'visible'       => 'required|min:1',
+            'expired'       => 'required|min:1',
             'expired_at'    => 'required|date|after:created_at',
             'city_id'       => 'required|exists:cities,id',
             'subcategory_id'=> 'required|exists:subcategories,id',
@@ -51,11 +52,13 @@ class StoreJobRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+
         ($this->has('enterprise')) ? ($enterprise = 1) : ($enterprise = 0);
         ($this->has('visible')) ? ($visible = 1) : ($visible = 0);
         $this->merge([
             'enterprise'    => $enterprise,
             'visible'       => $visible,
+            'expired'       => 0,
             'expired_at'    => Carbon::today()->addDays(30),
             'recruiter_id'  => user()->profile->id,
         ]);

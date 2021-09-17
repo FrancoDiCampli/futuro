@@ -13,7 +13,7 @@
 
         <form action="{{route('recruiters.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            {{-- <div x-data="{ show: false }" class="">
+            <div x-data="{ show: false }" class="">
                 <div class="w-3/12 px-2 flex items-start my-5">
                     <input type="checkbox"  @click="show = !show" class="rounded-sm border-gray-200 mt-1 focus:outline-none">
                     <label class="block font-semibold text-gray-400 mx-2">Pertenece a una empresa?</label>
@@ -28,7 +28,7 @@
 
                 <button x-show="!show"  onclick="Livewire.emit('openModal', 'store-enterprise')" class="bg-main-blue text-white font-semibold px-5 py-2 rounded-full" >Agregar su empresa</button>
 
-            </div> --}}
+            </div>
             <div class="row flex flex-wrap">
                 <select class="rounded-full border border-gray-200 text-base w-full focus:outline-none"
                     name="enterprise_id" id="">
