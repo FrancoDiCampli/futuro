@@ -20,7 +20,7 @@ class TestController extends Controller
     public function test(){
 
         // return Vacancy::find(1)->students()->wherePivot('state','new')->get();
-
+        return user()->roles;
         return Vacancy::first();
 
     }

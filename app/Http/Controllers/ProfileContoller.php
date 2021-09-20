@@ -48,8 +48,10 @@ class ProfileContoller extends Controller
     }
     public function reclutadorDashboard(){
         $enterprises = Enterprise::all();
-        if(!user()->hasReclutadorProfile) return view('admin.reclutador.complet',compact('enterprises'));
+        $cities =  City::all();
+        if(!user()->hasReclutadorProfile) return view('admin.reclutador.complet',compact('enterprises','cities'));
 
+        if(user()->profile->status === 0) return view('admin.reclutador.blocked');
         $vacancies = Vacancy::with('students')->where('recruiter_id',user()->profile->id)->get();
         return view('admin.reclutador.dashboard',compact('vacancies'));
     }

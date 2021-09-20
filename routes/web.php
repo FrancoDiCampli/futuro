@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function () {
 
    Route::post('postulation',[App\Http\Controllers\JobController::class,'postulation'])->name('postulation');
 
+   Route::get('recruiter/blocked',[App\Http\Controllers\RecruiterController::class,'blocked'])->name('blocked');
 });
 
 Route::get('/dashboard', function () {

@@ -1,1 +1,7 @@
-<h1>Dashboard Empresa</h1>
+@extends('layouts.main')
+
+@section('content')
+
+    @include('admin.empresa.approve')
+
+@endsection

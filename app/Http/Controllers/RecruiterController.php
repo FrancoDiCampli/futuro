@@ -13,14 +13,17 @@ class RecruiterController extends Controller
 {
     public function store(StoreRecruiterRequest $request){
 
-        $validated =  $request->validated();
+        return $validated =  $request->validated();
 
         $recruiter = DB::transaction(function () use ($validated) {
             return Recruiter::create([
-                                'first_name'    =>$validated['first_name'],
-                                'last_name'     =>$validated['last_name'],
-                                'phone'         =>$validated['phone'],
-                                'enterprise_id' => intval($validated['enterprise_id']),
+                                'first_name'            =>$validated['first_name'],
+                                'last_name'             =>$validated['last_name'],
+                                'phone'                 =>$validated['phone'],
+                                'belong_enterprise'     =>$validated['belong_enterprise'],
+                                'enterprise_id'         => intval($validated['enterprise_id']),
+                                'city_id'               => intval($validated['city_id']),
+                                'status'                => intval($validated['status']),
             ]);
         });
 
@@ -28,12 +31,16 @@ class RecruiterController extends Controller
 
         $recruiter->user()->save(user());
 
-        return redirect()->route('reclutador.dashboard');
+        return redirect()->route('blocked');
     }
 
     public function index(){
         $enterprise = Enterprise::first();
         $vacancies = Vacancy::where('recruiter_id',user()->profile->id)->get();
         return view('admin.reclutador.index',compact('enterprise','vacancies'));
+    }
+
+    public function blocked(){
+        return view('admin.reclutador.blocked');
     }
 }

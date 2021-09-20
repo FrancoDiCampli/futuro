@@ -19,10 +19,12 @@ class CreateRecruitersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-
             $table->string('phone');
+            $table->boolean('belong_enterprise')->default(false);
+            $table->integer('status');
+            $table->foreignId('enterprise_id')->nullable();
+            $table->foreignId('city_id')->constrained();
 
-            $table->foreignId('enterprise_id')->constrained();
             $table->timestamps();
         });
 

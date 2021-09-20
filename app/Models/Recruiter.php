@@ -18,7 +18,10 @@ class Recruiter extends Model
         'first_name',
         'last_name',
         'phone',
-        'enterprise_id'
+        'belong_enterprise',
+        'enterprise_id',
+        'city_id',
+        'status'
     ];
 
     /**
@@ -27,9 +30,21 @@ class Recruiter extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id'                => 'integer',
+        'city_id'           => 'integer',
+        'belong_enterprise' => 'boolean',
     ];
 
+    const STATUS = [
+        0   => 'disabled',
+        1   => 'enabled',
+        2   => 'suspended'
+    ];
+
+    public function city()
+    {
+        return $this->belongsTo(\App\Models\City::class);
+    }
 
     public function enterprise()
     {
