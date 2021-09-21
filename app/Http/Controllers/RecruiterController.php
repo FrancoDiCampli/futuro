@@ -13,7 +13,7 @@ class RecruiterController extends Controller
 {
     public function store(StoreRecruiterRequest $request){
 
-        return $validated =  $request->validated();
+        $validated =  $request->validated();
 
         $recruiter = DB::transaction(function () use ($validated) {
             return Recruiter::create([
@@ -30,7 +30,7 @@ class RecruiterController extends Controller
         $recruiter->avatar()->make()->upload($validated['avatar'], 'avatar/'.$recruiter->id, 'avatar');
 
         $recruiter->user()->save(user());
-
+        user()->assignRole('reclutador');
         return redirect()->route('blocked');
     }
 
@@ -43,4 +43,7 @@ class RecruiterController extends Controller
     public function blocked(){
         return view('admin.reclutador.blocked');
     }
+
+
+
 }

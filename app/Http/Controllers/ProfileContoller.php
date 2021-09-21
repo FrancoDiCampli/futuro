@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\Language;
 use App\Models\Postulation;
+use App\Models\Recruiter;
 use App\Models\Software;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
@@ -31,7 +32,8 @@ class ProfileContoller extends Controller
     public function empresaDashboard(){
         $cities = City::all();
         if(!user()->hasEmpresaProfile) return view('admin.empresa.complet',compact('cities'));
-        return view('admin.empresa.dashboard');
+        $recruiters =  Recruiter::where('enterprise_id',1)->get();
+        return view('admin.empresa.dashboard',compact('recruiters'));
     }
     public function estudianteDashboard(){
         $skills =  Vacancy::SKILLS;

@@ -4,7 +4,9 @@
 
 <div class="w-10/12 mx-auto text-gray-700">
     <a class="text-xs text-main-blue font-semibold" href="">Regresar</a>
-    <h1 class="text-4xl text-main-blue">{{$job->title}}</h1>
+    <div>
+        <h1 class="text-4xl text-main-blue">{{$job->title}}</h1>
+    </div>
     <div class="flex items-center text-gray-700 my-5 text-sm">
         <svg aria-hidden="true" data-prefix="fas" data-icon="briefcase" class="h-5 svg-inline--fa fa-briefcase fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"/></svg>
         <p class="mx-2">{{$job->subcategory->category->name}} | {{$job->subcategory->name}}</p>
@@ -76,18 +78,13 @@
                 <div class="flex flex-wrap text-xs">
                     @foreach ($job->skills as $skill)
 
-
                     <div class="flex items-start w-4/12 px-5">
                         <svg aria-hidden="true" data-prefix="fas" data-icon="circle" class="m-1 h-2 text-lime svg-inline--fa fa-circle fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></svg>
                         <div>
                             <p>{{$skill}}</p>
                         </div>
                     </div>
-
                     @endforeach
-
-
-
 
                 </div>
 

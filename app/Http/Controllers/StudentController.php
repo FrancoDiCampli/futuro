@@ -58,4 +58,10 @@ class StudentController extends Controller
     }
 
 
+    public function show(Student $student){
+
+        return view('admin.estudiante.components.show',compact('student'));
+    }
+
+
 }

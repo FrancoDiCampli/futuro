@@ -12,7 +12,8 @@ function user(): User
     return auth()->user();
 }
 
-function recruiter()
+function profile()
 {
-    return user()->recruiter;
+    return user()->profile;
 }
+

@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreEnterpriseRequest;
+use App\Models\Recruiter;
 
 class EnterpriseController extends Controller
 {
@@ -53,5 +54,17 @@ class EnterpriseController extends Controller
     public function show(Enterprise $enterprise){
 
         return $enterprise;
+    }
+
+    public function acceptRecruiter(Request $request){
+
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->update([
+            'enterprise_id' =>profile()->id,
+            'status'        =>1
+        ]);
+
+        return back();
+
     }
 }

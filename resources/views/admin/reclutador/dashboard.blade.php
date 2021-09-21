@@ -13,7 +13,7 @@
             <div class="card bg-white p-5 mb-10">
                 <div class="row flex justify-between items-center mt-5">
                     <div class="flex items-center ">
-                        <h2 class="text-lg text-main-blue font-semibold">{{$vacancy->title}}</h2>
+                        <a href="{{route('vacancies.show',$vacancy)}}" class="text-lg text-main-blue font-semibold">{{$vacancy->title}}</a>
                         <p class="bg-lime px-5 py-1 rounded-full mx-5 text-white text-sm">Abierta</p>
                     </div>
                     <div class="flex  justify-center text-xs items-center">

@@ -26,4 +26,8 @@ class Software extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function students(){
+        return $this->belongsToMany(Student::class)->withPivot('level');
+    }
 }
