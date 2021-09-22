@@ -61,7 +61,7 @@
                         <div x-show="activeTab===0" >@include('postulations.components.all')</div>
                         <div x-show="activeTab===1">@include('postulations.components.news')</div>
                         <div x-show="activeTab===2">@include('postulations.components.rejected')</div>
-                        <div x-show="activeTab===3">Content 4</div>
+                        <div x-show="activeTab===3">@include('postulations.components.finalist')</div>
                     </div>
                 </div>
                 <!--actual component end-->

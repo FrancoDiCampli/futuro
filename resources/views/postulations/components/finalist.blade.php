@@ -1,5 +1,5 @@
 
-@foreach ($postulations->byStatus('finalist') as $postulation)
+@foreach ($postulations->byStatus('final') as $postulation)
 
 <div class="card bg-white p-5 flex justify-start items-start my-5 border">
     <img class=" rounded-full shadow-md h-20  " src="{{asset('img/avatar/eduardo.png')}}" alt="">

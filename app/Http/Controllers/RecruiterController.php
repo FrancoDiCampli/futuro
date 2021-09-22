@@ -39,7 +39,7 @@ class RecruiterController extends Controller
 
     public function index(){
         $enterprise = Enterprise::first();
-        $vacancies = Vacancy::where('recruiter_id',user()->profile->id)->get();
+        $vacancies = Vacancy::where('recruiter_id',user()->profile->id)->paginate(5);
         return view('admin.recruiter.index',compact('enterprise','vacancies'));
     }
 
