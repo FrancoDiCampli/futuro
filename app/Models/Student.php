@@ -87,7 +87,7 @@ class Student extends Model
 
     public function vacancies()
     {
-        return $this->belongsToMany(Vacancy::class,'postulations')->withPivot(['state','visible'])->withTimestamps();
+        return $this->belongsToMany(Vacancy::class,'postulations')->withPivot(['status','visible'])->withTimestamps();
     }
 
     public function languages(){

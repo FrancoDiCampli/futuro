@@ -52,7 +52,7 @@ class EnterpriseTableSeeder extends Seeder
         ]);
 
         $enterprise->user()->save($user);
-        $user->assignRole('empresa');
+        $user->assignRole('enterprise');
 
     }
 }

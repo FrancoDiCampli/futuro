@@ -52,16 +52,16 @@ class User extends Authenticatable
       return $this->morphTo();
     }
 
-    public function getHasEmpresaProfileAttribute()
+    public function getHasEnterpriseProfileAttribute()
     {
       return $this->profile_type == 'App\Models\Enterprise';
     }
-    public function getHasEstudianteProfileAttribute()
+    public function getHasStudentProfileAttribute()
     {
         return $this->profile_type == 'App\Models\Student';
     }
 
-    public function getHasReclutadorProfileAttribute()
+    public function getHasRecruiterProfileAttribute()
     {
         return $this->profile_type == 'App\Models\Recruiter';
     }

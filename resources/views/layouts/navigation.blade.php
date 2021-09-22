@@ -16,12 +16,28 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-
+                @student
                 <div class="hidden space-x-28 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
-                        {{ __('Find Job') }}
+                        {{ __('Encuentra Trabajo') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.index')">
+                        {{ __('Encuentra Empresa') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                        {{ __('Postulaciones') }}
                     </x-nav-link>
                 </div>
+                @endstudent
+
+                @recruiter
+                <div class="hidden space-x-28 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link >
+                        {{ __('Find Postulations') }}
+                    </x-nav-link>
+                </div>
+                @endrecruiter
+
 
             </div>
 

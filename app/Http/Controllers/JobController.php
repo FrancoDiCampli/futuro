@@ -71,7 +71,7 @@ class JobController extends Controller
     public function postulation(Request $request){
 
         $vacancy = Vacancy::find($request->vacancy_id);
-        user()->profile->vacancies()->attach($vacancy->id,['visible'=>true,'state'=>'new']);
-       return redirect()->route('jobs.index');
+        user()->profile->vacancies()->attach($vacancy->id,['visible'=>true,'status'=>'new']);
+        return redirect()->route('jobs.index');
     }
 }

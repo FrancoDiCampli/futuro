@@ -13,13 +13,13 @@
 
         <form action="{{route('recruiters.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div x-data="{ show: false }" class="">
+            <div x-data="{ show: false }" class=" flex items-center">
                 <div class="w-3/12 px-2 flex items-start my-5">
                     <input type="checkbox" name="belong_enterprise" @click="show = !show" class="rounded-sm border-gray-200 mt-1 focus:outline-none">
                     <label class="block font-semibold text-gray-400 mx-2">Pertenece a una empresa?</label>
                 </div>
 
-                <select class="rounded-full border border-gray-200 text-base w-full focus:outline-none"
+                <select  x-show="show" class="rounded-full border border-gray-200 text-base w-full focus:outline-none"
                         name="enterprise_id" id="">
 
                     <option value="0">Seleccione una opcion</option>
@@ -31,14 +31,7 @@
                 <button x-show="!show"  onclick="Livewire.emit('openModal', 'store-enterprise')" class="bg-main-blue text-white font-semibold px-5 py-2 rounded-full" >Agregar su empresa</button>
 
             </div>
-            {{-- <div class="row flex flex-wrap">
-                <select class="rounded-full border border-gray-200 text-base w-full focus:outline-none"
-                    name="enterprise_id" id="">
-                    @foreach ($enterprises as $enterprise)
-                        <option value="{{$enterprise->id}}">{{$enterprise->name}}</option>
-                    @endforeach
-                </select>
-            </div> --}}
+
             <div class="row flex flex-wrap">
                 <div class="px-10 py-5 w-6/12">
                     <label for="" class="text-base text-main-blue block font-semibold px-5">Nombre</label>

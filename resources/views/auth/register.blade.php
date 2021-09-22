@@ -48,13 +48,13 @@
             <div class="mt-4">
                 <div class="flex justify-between">
                     <label class="inline-flex items-center mt-3">
-                        <input type="radio" name="profile" value="empresa" class="form-radio h-5 w-5 text-gray-800" checked><span class="ml-2 text-gray-700">Empresa</span>
+                        <input type="radio" name="profile" value="enterprise" class="form-radio h-5 w-5 text-gray-800" checked><span class="ml-2 text-gray-700">Empresa</span>
                     </label>
                     <label class="inline-flex items-center mt-3">
-                        <input type="radio" name="profile" value="estudiante" class="form-radio h-5 w-5 text-gray-800" ><span class="ml-2 text-gray-700">Estudiante</span>
+                        <input type="radio" name="profile" value="student" class="form-radio h-5 w-5 text-gray-800" ><span class="ml-2 text-gray-700">Estudiante</span>
                     </label>
                     <label class="inline-flex items-center mt-3">
-                        <input type="radio" name="profile" value="reclutador" class="form-radio h-5 w-5 text-gray-800" ><span class="ml-2 text-gray-700">Reclutador</span>
+                        <input type="radio" name="profile" value="recruiter" class="form-radio h-5 w-5 text-gray-800" ><span class="ml-2 text-gray-700">Reclutador</span>
                     </label>
                 </div>
             </div>

@@ -20,7 +20,7 @@ class CreatePostulationsTable extends Migration
             $table->foreignId('vacancy_id')->constrained();
             $table->foreignId('student_id')->constrained();
             $table->boolean('visible');
-            $table->string('state');
+            $table->string('status');
 
             $table->timestamps();
         });

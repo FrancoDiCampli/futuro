@@ -11,6 +11,7 @@ use App\Http\Traits\FileTrait;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile as HttpUploadedFile;
+use PhpParser\Node\Expr\PostInc;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TestController extends Controller
@@ -18,10 +19,12 @@ class TestController extends Controller
     use FileTrait;
 
     public function test(){
+        $vacancy = Vacancy::first();
 
-        // return Vacancy::find(1)->students()->wherePivot('state','new')->get();
-        return profile();
-        return Vacancy::first();
+        $postulations =  Postulation::where('vacancy_id',$vacancy->id)->get();
+
+        return count($postulations->byStatus('rejected'));
+
 
     }
 }

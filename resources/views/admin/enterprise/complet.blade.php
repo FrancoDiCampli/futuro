@@ -2,6 +2,6 @@
 
 @section('content')
 
-    @include('admin.empresa.approve')
+@include('admin.enterprise.create')
 
 @endsection

@@ -21,38 +21,45 @@ class RecruiterTableSeeder extends Seeder
     public function run()
     {
 
+        $user = User::create([
+            'name' => 'reclutador',
+            'email' => 'reclutador@mail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('asdf1234'),
+        ]);
 
+        $recruiter = Recruiter::create([
+                            'first_name'            =>'Juan',
+                            'last_name'             =>'Perez',
+                            'phone'                 =>'3735404737',
+                            'belong_enterprise'     =>1,
+                            'enterprise_id'         => 1,
+                            'city_id'               => 1,
+                            'status'                => 1,
+        ]);
 
+        $recruiter->user()->save($user);
+        $user->assignRole('recruiter');
 
-        // $enterprise = Enterprise::create([
-        //     'name'          => 'Futuro Talento',
-        //     'employees'     => '100',
-        //     'sector'        => 'Servicios',
-        //     'turn'          => 'Contratacion servicios',
-        //     'website'       => 'futuro-talento.com',
-        //     'vision'        => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum cupiditate commodi exercitationem non veritatis excepturi, sapiente expedita eos sit, vel earum quia impedit autem possimus velit, numquam nesciunt totam doloremque.',
-        //     'description'   => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum cupiditate commodi exercitationem non veritatis excepturi, sapiente expedita eos sit, vel earum quia impedit autem possimus velit, numquam nesciunt totam doloremque.',
-        //     'rfc'           => '323213213',
-        //     'business_name' => 'Futuro Talento S.A.',
-        //     'city_id'       => 1
-        // ]);
+        $user2 = User::create([
+            'name' => 'recruiter',
+            'email' => 'recruiter@mail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('asdf1234'),
+        ]);
 
-        // Recruiter::create([
-        //     'name'          => 'Juan Perez',
-        //     'email'         => 'admin@mail.com',
-        //     'phone'         => '3735404737',
-        //     'user_id'       => 1,
-        //     'enterprise_id' => $enterprise->id,
-        // ]);
+        $recruiter = Recruiter::create([
+                            'first_name'            =>'Jon',
+                            'last_name'             =>'Snow',
+                            'phone'                 =>'422334223',
+                            'belong_enterprise'     =>1,
+                            'enterprise_id'         => 1,
+                            'city_id'               => 2,
+                            'status'                => 1,
+        ]);
 
-        // File::create([
-        //     'path'              => 'logos/logo.png',
-        //     'category'          => 'logos',
-        //     'original_name'     => 'logo.png',
-        //     'mime_type'         => 'png',
-        //     'extension'         => 'png',
-        //     'fileable_type'     => 'App/Models/Enterprise',
-        //     'fileable_id'       => 1,
-        // ]);
+        $recruiter->user()->save($user2);
+        $user2->assignRole('recruiter');
+
     }
 }

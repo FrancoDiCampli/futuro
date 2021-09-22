@@ -11,6 +11,9 @@ use App\Models\Vacancy;
 
 class RecruiterController extends Controller
 {
+
+
+
     public function store(StoreRecruiterRequest $request){
 
         $validated =  $request->validated();
@@ -30,18 +33,18 @@ class RecruiterController extends Controller
         $recruiter->avatar()->make()->upload($validated['avatar'], 'avatar/'.$recruiter->id, 'avatar');
 
         $recruiter->user()->save(user());
-        user()->assignRole('reclutador');
+        user()->assignRole('recruiter');
         return redirect()->route('blocked');
     }
 
     public function index(){
         $enterprise = Enterprise::first();
         $vacancies = Vacancy::where('recruiter_id',user()->profile->id)->get();
-        return view('admin.reclutador.index',compact('enterprise','vacancies'));
+        return view('admin.recruiter.index',compact('enterprise','vacancies'));
     }
 
     public function blocked(){
-        return view('admin.reclutador.blocked');
+        return view('admin.recruiter.blocked');
     }
 
 

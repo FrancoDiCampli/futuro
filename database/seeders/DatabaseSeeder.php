@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
     {
         Role::create(['name' => 'superadmin']);
         Role::create(['name' => 'admin']);
-        Role::create(['name' => 'estudiante']);
-        Role::create(['name' => 'empresa']);
-        Role::create(['name' => 'reclutador']);
+        Role::create(['name' => 'student']);
+        Role::create(['name' => 'enterprise']);
+        Role::create(['name' => 'recruiter']);
 
         $superadmin = User::create([
             'name' => 'superadmin',
@@ -49,22 +49,11 @@ class DatabaseSeeder extends Seeder
             SoftwareTableSeeder::class,
             LanguageTableSeeder::class,
             EnterpriseTableSeeder::class,
+            RecruiterTableSeeder::class,
+            VacancyTableSeeder::class,
+            StudentTableSeeder::class
         ]);
-        // City::factory()
-        // ->count(20)
-        // ->create();
 
-        // User::factory()
-        //     ->count(10)
-        //     ->create();
-
-        // Enterprise::factory()
-        // ->count(2)
-        // ->create();
-
-        // Student::factory()
-        // ->count(10)
-        // ->create();
 
 
 

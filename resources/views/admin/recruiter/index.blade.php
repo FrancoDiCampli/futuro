@@ -9,7 +9,6 @@
         <div class="content w-8/12">
             @foreach ($vacancies as $vacancy)
 
-
             <div class="card bg-white p-5 mb-10">
                 <div class="row flex justify-between items-center mt-5">
                     <div class="flex items-center ">

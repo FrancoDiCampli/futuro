@@ -29,13 +29,13 @@ class ProfileContoller extends Controller
     public function adminDashboard(){
         return view('admin.admin');
     }
-    public function empresaDashboard(){
+    public function enterpriseDashboard(){
         $cities = City::all();
-        if(!user()->hasEmpresaProfile) return view('admin.empresa.complet',compact('cities'));
-        $recruiters =  Recruiter::where('enterprise_id',1)->get();
-        return view('admin.empresa.dashboard',compact('recruiters'));
+        if(!user()->hasEnterpriseProfile) return view('admin.enterprise.complet',compact('cities'));
+        $recruiters =  Recruiter::where('enterprise_id',user()->profile->id)->get();
+        return view('admin.enterprise.dashboard',compact('recruiters'));
     }
-    public function estudianteDashboard(){
+    public function studentDashboard(){
         $skills =  Vacancy::SKILLS;
         $categories =  Category::all();
         $subcategories =  Subcategory::all();
@@ -45,16 +45,16 @@ class ProfileContoller extends Controller
         $languages = Language::all();
         $software = Software::all();
         $jobs = Vacancy::all();
-        if(!user()->hasEstudianteProfile) return view('admin.estudiante.complet',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
-        return view('admin.estudiante.dashboard',compact('jobs'));
+        if(!user()->hasStudentProfile) return view('admin.student.complet',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
+        return view('admin.student.dashboard',compact('jobs'));
     }
-    public function reclutadorDashboard(){
+    public function recruiterDashboard(){
         $enterprises = Enterprise::all();
         $cities =  City::all();
-        if(!user()->hasReclutadorProfile) return view('admin.reclutador.complet',compact('enterprises','cities'));
+        if(!user()->hasRecruiterProfile) return view('admin.recruiter.complet',compact('enterprises','cities'));
 
-        if(user()->profile->status === 0) return view('admin.reclutador.blocked');
-        $vacancies = Vacancy::with('students')->where('recruiter_id',user()->profile->id)->get();
-        return view('admin.reclutador.dashboard',compact('vacancies'));
+        if(user()->profile->status === 0) return view('admin.recruiter.blocked');
+        $vacancies = Vacancy::with('students')->where('recruiter_id',user()->profile->id)->paginate(5);
+        return view('admin.recruiter.dashboard',compact('vacancies'));
     }
 }

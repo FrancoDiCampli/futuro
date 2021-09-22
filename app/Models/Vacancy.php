@@ -85,21 +85,21 @@ class Vacancy extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class,'postulations')->withPivot(['state','visible'])->withTimestamps();
+        return $this->belongsToMany(Student::class,'postulations')->withPivot(['status','visible'])->withTimestamps();
     }
 
     public function getNewsAttribute(){
 
-        return $this->students()->wherePivot('state','new')->count();
+        return $this->students()->wherePivot('status','new')->count();
     }
 
     public function getRejectedAttribute(){
 
-        return $this->students()->wherePivot('state','rejected')->count();
+        return $this->students()->wherePivot('status','rejected')->count();
     }
     public function getFinalAttribute(){
 
-        return $this->students()->wherePivot('state','final')->count();
+        return $this->students()->wherePivot('status','final')->count();
     }
 
 }

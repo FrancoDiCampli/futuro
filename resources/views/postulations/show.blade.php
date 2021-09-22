@@ -56,10 +56,9 @@
                     <p class="m-2">juan@mail.com</p>
                 </div>
             </div>
-            <form action="{{route('update.status')}}" method="POST">
-
+            <form action="{{route('update.postulation.status')}}" method="POST">
                 @csrf
-                <input type="hidden" name="postulation_id" value="{{$postulation->id}}">
+                <input type="hidden" value="{{$postulation->id}}" name="postulation">
                 <input type="hidden" value="final" name="status">
                 <button type="submit" class="flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">
                     <p class="font-semibold">Mover a finalistas</p>
