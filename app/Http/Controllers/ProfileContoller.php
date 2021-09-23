@@ -44,9 +44,12 @@ class ProfileContoller extends Controller
         $states = State::all();
         $languages = Language::all();
         $software = Software::all();
-        $jobs = Vacancy::all();
+        $vacancies = Vacancy::all();
+
+        $postulations = Postulation::where('student_id',user()->profile->id)->get();
         if(!user()->hasStudentProfile) return view('admin.student.complet',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
-        return view('admin.student.dashboard',compact('jobs'));
+        // return view('admin.student.dashboard',compact('postulations'));
+        return redirect()->route('students.dashboard');
     }
     public function recruiterDashboard(){
         $enterprises = Enterprise::all();

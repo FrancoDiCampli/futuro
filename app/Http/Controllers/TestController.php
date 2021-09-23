@@ -21,7 +21,8 @@ class TestController extends Controller
 
     public function test(){
 
-
+        $job = Postulation::first();
+        return $job->vacancy->expired;
 
     }
 }

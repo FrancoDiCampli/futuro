@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 class VacancyController extends Controller
 {
     public function index(){
-        $jobs =  Vacancy::all();
-        return view('vacancy.index',compact('jobs'));
+        $post = user()->profile->vacancies->modelKeys();
+
+        $vacancies =  Vacancy::all()->except($post);
+
+        return view('vacancy.index',compact('vacancies'));
 
     }
     public function show(Vacancy $vacancy){

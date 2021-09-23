@@ -41,6 +41,7 @@ class Recruiter extends Model
         2   => 'suspended'
     ];
 
+    protected $appends = ['fullname'];
     public function city()
     {
         return $this->belongsTo(\App\Models\City::class);
@@ -59,5 +60,9 @@ class Recruiter extends Model
     public function avatar()
     {
         return $this->morphOne(File::class, 'fileable');
+    }
+
+    public function getFullnameAttribute(){
+        return $this->first_name.', '.$this->last_name;
     }
 }

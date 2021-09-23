@@ -42,7 +42,7 @@ Route::resource('notes',App\Http\Controllers\NoteController::class)->middleware(
 
 
 // Test stage
-
+Route::get('student-dashboard',[\App\Http\Controllers\StudentController::class,'dashboard'])->name('students.dashboard');
 
 // Portulations
 Route::get('postulation/{vacancy}',[App\Http\Controllers\PostulationController::class,'index'])->name('postulation.index');

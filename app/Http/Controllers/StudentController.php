@@ -11,11 +11,19 @@ use App\Models\Vacancy;
 
 class StudentController extends Controller
 {
+
+    public function dashboard(){
+        // return user()->id;
+        $postulations = Postulation::where('student_id',user()->profile->id)->get();
+
+        return view('admin.student.dashboard',compact('postulations'));
+    }
+
     public function index(){
 
         $postulations = user()->profile->vacancies;
 
-        return view('admin.student.index',compact('postulations'));
+        return view('admin.student.dashboard',compact('postulations'));
     }
 
     public function store(StudentStoreRequest $request){

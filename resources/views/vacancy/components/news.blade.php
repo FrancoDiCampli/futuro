@@ -1,4 +1,4 @@
-{{-- @foreach ($vacancy->->students as $student)
+@foreach ($vacancy->students as $student)
 
 <div class="card bg-white p-5 flex justify-start items-start my-5 border">
     <img class=" rounded-full shadow-md h-20  " src="{{asset('img/avatar/eduardo.png')}}" alt="">
@@ -27,6 +27,5 @@
 
 </div>
 
-@endforeach --}}
+@endforeach
 
-<pre>{{dd($post)}}</pre>
