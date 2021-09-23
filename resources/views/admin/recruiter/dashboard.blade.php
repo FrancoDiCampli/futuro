@@ -11,6 +11,7 @@
 
 
             <div class="card bg-white p-5 mb-10">
+                <p>{{$vacanccy->id}}</p>
                 <div class="row flex justify-between items-center mt-5">
                     <div class="flex items-center ">
                         {{-- <a href="{{route('vacancies.show',$vacancy)}}" class="text-lg text-main-blue font-semibold">{{$vacancy->title}}</a> --}}

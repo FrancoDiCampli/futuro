@@ -55,6 +55,6 @@ class ProfileContoller extends Controller
 
         if(user()->profile->status === 0) return view('admin.recruiter.blocked');
         $vacancies = Vacancy::with('students')->where('recruiter_id',user()->profile->id)->paginate(5);
-        return view('admin.recruiter.dashboard',compact('vacancies'));
+        return view('admin.recruiter.index',compact('vacancies'));
     }
 }

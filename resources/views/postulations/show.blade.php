@@ -68,7 +68,18 @@
 
 
             </form>
+            <button  onclick='Livewire.emit("openModal", "store-note",{{ json_encode(["postulation" => $postulation->id]) }})' class="bg-main-blue text-white font-semibold px-5 py-2 rounded-full" >Agregar nota</button>
+            <form action="{{route('update.postulation.status')}}" method="POST">
+                @csrf
+                <input type="hidden" value="{{$postulation->id}}" name="postulation">
+                <input type="hidden" value="rejected" name="status">
+                <button type="submit" class="border border-red-500 flex items-center w-10/12 mx-auto justify-center text-center bg-white text-red-600 m-5 rounded-full py-2">
+                    <p class="font-semibold">Descartar</p>
 
+                </button>
+
+
+            </form>
 
         </div>
     </div>

@@ -15,8 +15,8 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         @livewireStyles
     </head>
-    <body class="bg-gray-100">
-        <div class="bg-gray-100">
+    <body class="bg-gray-100 ">
+        <div class="bg-gray-100 text-gray-600">
             @include('layouts.navigation')
         </div>
         <main class="w-11/12 font-poppins mx-auto mt-5">

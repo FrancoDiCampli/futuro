@@ -9,6 +9,7 @@ use App\Models\Postulation;
 use Illuminate\Http\Request;
 use App\Http\Traits\FileTrait;
 use App\Models\Vacancy;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile as HttpUploadedFile;
 use PhpParser\Node\Expr\PostInc;
@@ -19,11 +20,7 @@ class TestController extends Controller
     use FileTrait;
 
     public function test(){
-        $vacancy = Vacancy::first();
 
-        $postulations =  Postulation::where('vacancy_id',$vacancy->id)->get();
-
-        return count($postulations->byStatus('rejected'));
 
 
     }

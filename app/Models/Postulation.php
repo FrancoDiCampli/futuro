@@ -33,7 +33,7 @@ class Postulation extends Model
         'visible' => 'boolean',
     ];
 
-    const STATUS=['new','rejected','finalist'];
+    const STATUS=['new','rejected','final'];
 
     public function vacancy()
     {
@@ -44,7 +44,9 @@ class Postulation extends Model
     {
         return $this->belongsTo(\App\Models\Student::class);
     }
-
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
     public function scopeByStatus($query, $status)
     {
         return $query->whereStatus($status);

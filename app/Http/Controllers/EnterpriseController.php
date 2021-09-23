@@ -12,6 +12,10 @@ use App\Models\Recruiter;
 
 class EnterpriseController extends Controller
 {
+    public function index(){
+        $enterprises =  Enterprise::all();
+        return view('enterprises.index',compact('enterprises'));
+    }
     public function create(){
         // $skills =  Vacancy::SKILLS;
         // $categories =  Category::all();
@@ -23,8 +27,6 @@ class EnterpriseController extends Controller
     }
 
     public function store(StoreEnterpriseRequest $request){
-
-
 
         $validated =  $request->validated();
 

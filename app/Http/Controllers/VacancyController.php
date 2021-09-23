@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class VacancyController extends Controller
 {
     public function index(){
-        return 'index';
+        $jobs =  Vacancy::all();
+        return view('vacancy.index',compact('jobs'));
+
     }
     public function show(Vacancy $vacancy){
 

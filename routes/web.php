@@ -38,6 +38,7 @@ Route::resource('recruiters', App\Http\Controllers\RecruiterController::class)->
 Route::resource('students', App\Http\Controllers\StudentController::class)->middleware(['auth']);
 Route::resource('vacancies', App\Http\Controllers\VacancyController::class)->middleware(['auth']);
 Route::resource('jobs',App\Http\Controllers\JobController::class)->middleware(['auth']);
+Route::resource('notes',App\Http\Controllers\NoteController::class)->middleware(['auth']);
 
 
 // Test stage

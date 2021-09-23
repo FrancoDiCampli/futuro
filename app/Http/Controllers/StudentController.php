@@ -14,10 +14,8 @@ class StudentController extends Controller
     public function index(){
 
         $postulations = user()->profile->vacancies;
-        // $ids = $postulations->modelKeys();
-        // return $postulations =  Vacancy::whereIn('id',[$ids])->paginate(10);
 
-        return view('admin.estudiante.index',compact('postulations'));
+        return view('admin.student.index',compact('postulations'));
     }
 
     public function store(StudentStoreRequest $request){
@@ -49,6 +47,8 @@ class StudentController extends Controller
 
             ]);
         });
+
+
 
         $student->avatar()->make()->upload($validated['avatar'], 'avatar/'.$student->id, 'avatar');
 
