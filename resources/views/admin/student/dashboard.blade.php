@@ -10,7 +10,7 @@
 
     <div class="content flex flex-wrap">
         @foreach ($postulations as $postulation)
-        <a href="" class="card w-56 bg-white space-x-2 mx-1 text-gray-700 justify-center mt-5 cursor-pointer">
+        <a href="{{route('vacancies.show',$postulation->vacancy)}}" class="card w-56 bg-white space-x-2 mx-1 text-gray-700 justify-center mt-5 cursor-pointer">
             <img class="h-16 mt-5 mx-auto" src="{{asset('img/logos/logo.png')}}" alt="">
             <div class="my-5">
                 @if ($postulation->vacancy->recruiter->belong_enterprise)

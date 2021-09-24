@@ -96,4 +96,10 @@ class Student extends Model
     public function softwares(){
         return $this->belongsToMany(Software::class)->withPivot('level');
     }
+
+    public function experiences(){
+        return $this->hasMany(Experience::class);
+    }
+
+
 }

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreEnterpriseRequest;
 use App\Models\Recruiter;
+use App\Models\Vacancy;
 
 class EnterpriseController extends Controller
 {
@@ -54,8 +55,9 @@ class EnterpriseController extends Controller
     }
 
     public function show(Enterprise $enterprise){
-
-        return $enterprise;
+        // return $enterprise->recruiters;
+        $vacancies = Vacancy::whereIn('recruiter_id',$enterprise->recruiters)->get();
+       return view('enterprises.show',compact('enterprise','vacancies'));
     }
 
     public function acceptRecruiter(Request $request){

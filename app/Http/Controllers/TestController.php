@@ -8,6 +8,7 @@ use App\Models\Enterprise;
 use App\Models\Postulation;
 use Illuminate\Http\Request;
 use App\Http\Traits\FileTrait;
+use App\Models\Student;
 use App\Models\Vacancy;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -21,8 +22,10 @@ class TestController extends Controller
 
     public function test(){
 
-        $job = Postulation::first();
-        return $job->vacancy->expired;
+        $postulation =  Postulation::where('student_id',1)->get();
+
+        return $postulation->byStatus('new');
+
 
     }
 }

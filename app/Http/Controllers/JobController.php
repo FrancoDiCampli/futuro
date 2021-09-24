@@ -72,6 +72,6 @@ class JobController extends Controller
 
         $vacancy = Vacancy::find($request->vacancy_id);
         user()->profile->vacancies()->attach($vacancy->id,['visible'=>true,'status'=>'new']);
-        return redirect()->route('jobs.index');
+        return redirect()->route('vacancies.index');
     }
 }
