@@ -74,7 +74,11 @@
                     <p class="bg-white text-gray-700 rounded-full px-1 mx-2 ">{{count($postulations->byStatus('rejected'))}}</p><p class="font-semibold">Rechazadas</p>
                 </div>
             </div>
-            <form action="" method="POST">
+
+            <a href="{{route('students.edit',$student)}}" class="flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">
+                Editar Perfil
+            </a>
+            {{-- <form action="{{route('students.edit',$student)}}" method="POST">
                 @csrf
 
                 <input type="hidden" value="final" name="status">
@@ -85,7 +89,7 @@
                 </button>
 
 
-            </form>
+            </form> --}}
 
 
         </div>

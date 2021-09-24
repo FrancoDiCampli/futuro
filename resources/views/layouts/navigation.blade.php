@@ -71,6 +71,8 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <a href="{{route('student.profile')}}" class="h-10 p-3 cursor-pointer block hover:bg-gray-100">Perfil</a>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
