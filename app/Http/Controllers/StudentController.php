@@ -64,7 +64,8 @@ class StudentController extends Controller
         });
 
 
-        $student->avatar()->make()->upload($validated['avatar'], 'avatar/'.$student->id, 'avatar');
+        // $student->avatar()->make()->upload($validated['avatar'], 'avatar/'.$student->id, 'avatar');
+        user()->photo()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
 
         $student->user()->save(user());
 

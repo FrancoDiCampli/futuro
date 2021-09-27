@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Vacancy;
 use App\Models\Postulation;
 use Illuminate\Http\Request;
@@ -9,14 +10,15 @@ use Illuminate\Http\Request;
 class VacancyController extends Controller
 {
     public function index(){
-        $post = user()->profile->vacancies->modelKeys();
 
-        $vacancies =  Vacancy::all()->except($post);
+        $post = user()->profile->vacancies->modelKeys();
+        $vacancies =  Vacancy::orderBy('created_at')->paginate(10);
 
         return view('vacancy.index',compact('vacancies'));
 
     }
     public function show(Vacancy $vacancy){
+        $show = false;
 
        return view('vacancy.show',compact('vacancy'));
 

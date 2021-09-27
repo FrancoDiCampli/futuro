@@ -30,8 +30,8 @@ class RecruiterController extends Controller
             ]);
         });
 
-        $recruiter->avatar()->make()->upload($validated['avatar'], 'avatar/'.$recruiter->id, 'avatar');
-
+        // $recruiter->avatar()->make()->upload($validated['avatar'], 'avatar/'.$recruiter->id, 'avatar');
+        user()->photo()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
         $recruiter->user()->save(user());
         user()->assignRole('recruiter');
         return redirect()->route('blocked');

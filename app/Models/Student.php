@@ -80,10 +80,10 @@ class Student extends Model
         return $this->morphOne(\App\Models\User::class, 'profile');
     }
 
-    public function avatar()
-    {
-        return $this->morphOne(File::class, 'fileable');
-    }
+    // public function avatar()
+    // {
+    //     return $this->morphOne(File::class, 'fileable');
+    // }
 
     public function vacancies()
     {

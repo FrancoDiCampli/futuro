@@ -25,8 +25,11 @@
     </div>
 
     <div class="flex justify-between mt-5 items-center">
-        <p class="">Mostrando 20 de 285</p>
-        <div class="flex h-12 font-medium rounded-full justify-around w-4/12">
+
+        {{ $vacancies->links() }}
+        {{-- {{$vacancies->links()}} --}}
+        {{-- <div class="flex h-12 font-medium rounded-full justify-around w-4/12">
+
             <div class="bg-lime text-white w-12 border md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">1</div>
             <div class="w-12 border md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">2</div>
             <div class="w-12 border md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">3</div>
@@ -34,7 +37,7 @@
             <div class="w-12 border md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">14</div>
             <div class="w-12 border md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">15</div>
 
-        </div>
+        </div> --}}
     </div>
 
     <div class="content flex flex-wrap">

@@ -41,7 +41,14 @@ Route::resource('jobs',App\Http\Controllers\JobController::class)->middleware(['
 Route::resource('notes',App\Http\Controllers\NoteController::class)->middleware(['auth']);
 
 
+
+
 // Test stage
+// Route::resource('messages',App\Http\Controllers\MessageController::class)->middleware(['auth']);
+
+Route::get('notifications',[App\Http\Controllers\MessageController::class,'index'])->name('all.notifications');
+Route::get('unread-notifications',[App\Http\Controllers\MessageController::class,'unread'])->name('unread.notifications');
+
 Route::get('student-dashboard',[\App\Http\Controllers\StudentController::class,'dashboard'])->name('students.dashboard');
 Route::get('student-profile',[\App\Http\Controllers\StudentController::class,'profile'])->name('student.profile');
 

@@ -57,10 +57,10 @@ class Recruiter extends Model
         return $this->morphOne(\App\Models\User::class, 'profile');
     }
 
-    public function avatar()
-    {
-        return $this->morphOne(File::class, 'fileable');
-    }
+    // public function avatar()
+    // {
+    //     return $this->morphOne(File::class, 'fileable');
+    // }
 
     public function getFullnameAttribute(){
         return $this->first_name.', '.$this->last_name;

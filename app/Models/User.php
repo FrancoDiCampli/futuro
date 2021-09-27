@@ -52,6 +52,11 @@ class User extends Authenticatable
       return $this->morphTo();
     }
 
+    public function photo()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
+
     public function getHasEnterpriseProfileAttribute()
     {
       return $this->profile_type == 'App\Models\Enterprise';
