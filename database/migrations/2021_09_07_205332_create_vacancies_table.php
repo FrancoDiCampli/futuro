@@ -36,6 +36,8 @@ class CreateVacanciesTable extends Migration
             $table->foreignId('subcategory_id')->constrained();
             $table->foreignId('recruiter_id')->constrained();
 
+            $table->string('status')->default('pending');
+
             $table->timestamps();
         });
 
