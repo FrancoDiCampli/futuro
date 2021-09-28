@@ -48,6 +48,10 @@ class Vacancy extends Model
         'Comunicación Efectiva'
     ];
 
+    const STATUS = [
+        'pending',
+        'published'
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -151,5 +155,10 @@ class Vacancy extends Model
         if( isset($filters['subcategory_id']) ){
             $query->whereIn('subcategory_id', $filters['subcategory_id']);
         }
+    }
+
+    public function moves()
+    {
+        return $this->morphOne(\App\Models\Transaction::class, 'movable');
     }
 }

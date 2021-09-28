@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('profile_type')->nullable();
             $table->unsignedInteger('profile_id')->nullable();
+            $table->string('gateway_customer_id')->nullable();
         });
     }
 
