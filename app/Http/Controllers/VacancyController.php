@@ -9,12 +9,18 @@ use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
-    public function index(){
+    public function index($filters=null){
 
         $post = user()->profile->vacancies->modelKeys();
-        $vacancies =  Vacancy::orderBy('created_at')->paginate(10);
 
-        return view('vacancy.index',compact('vacancies'));
+        // $filters = [
+        //     'city_id'   =>   [1,2,4],
+        //     'hiring'   =>   ['Permanente','Por proyecto']
+        // ];
+        // $vacancies =  Vacancy::Filter($filters)->orderBy('created_at','asc')->paginate(10);
+
+        // return view('vacancy.index',compact('vacancies'));
+        return view('vacancy.index');
 
     }
     public function show(Vacancy $vacancy){

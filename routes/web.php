@@ -36,10 +36,11 @@ Route::resource('category', App\Http\Controllers\CategoryController::class);
 Route::resource('enterprises', App\Http\Controllers\EnterpriseController::class)->middleware(['auth']);
 Route::resource('recruiters', App\Http\Controllers\RecruiterController::class)->middleware(['auth']);
 Route::resource('students', App\Http\Controllers\StudentController::class)->middleware(['auth']);
-Route::resource('vacancies', App\Http\Controllers\VacancyController::class)->middleware(['auth']);
+Route::resource('vacancies', App\Http\Controllers\VacancyController::class)->except(['index'])->middleware(['auth']);
 Route::resource('jobs',App\Http\Controllers\JobController::class)->middleware(['auth']);
 Route::resource('notes',App\Http\Controllers\NoteController::class)->middleware(['auth']);
 
+Route::get('vacancies/{filters?}',[App\Http\Controllers\VacancyController::class,'index'])->name('vacancies.index');
 
 
 

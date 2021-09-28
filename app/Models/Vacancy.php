@@ -102,32 +102,54 @@ class Vacancy extends Model
         return $this->students()->wherePivot('status','final')->count();
     }
 
-    public function scopeOfCity($query, $city)
-    {
-        return $query->whereIn('city_id', $city);
-    }
+    // public function scopeOfCity($query, $city)
+    // {
+    //     return $query->whereIn('city_id', $city);
+    // }
 
-    public function scopeOfExperience($query, $experience)
-    {
-        return $query->whereIn('experience', $experience);
-    }
+    // public function scopeOfExperience($query, $experience)
+    // {
+    //     return $query->whereIn('experience', $experience);
+    // }
 
-    public function scopeOfHiring($query, $hiring)
-    {
-        return $query->whereIn('hiring', $hiring);
-    }
+    // public function scopeOfHiring($query, $hiring)
+    // {
+    //     return $query->whereIn('hiring', $hiring);
+    // }
 
-    public function scopeOfAvailable($query, $available)
-    {
-        return $query->whereIn('available', $available);
-    }
-    public function scopeOfSchedule($query, $schedule)
-    {
-        return $query->whereIn('schedule', $schedule);
-    }
+    // public function scopeOfAvailable($query, $available)
+    // {
+    //     return $query->whereIn('available', $available);
+    // }
+    // public function scopeOfSchedule($query, $schedule)
+    // {
+    //     return $query->whereIn('schedule', $schedule);
+    // }
 
-    public function scopeOfCategory($query, $subcategory)
+    // public function scopeOfCategory($query, $subcategory)
+    // {
+    //     return $query->whereIn('subcategory_id', $subcategory);
+    // }
+
+    public function scopeFilter($query, $filters)
     {
-        return $query->whereIn('subcategory_id', $subcategory);
+        if( isset($filters['city_id']) ){
+            $query->whereIn('city_id', $filters['city_id']);
+        }
+        if( isset($filters['experience']) ){
+            $query->whereIn('experience', $filters['experience']);
+        }
+        if( isset($filters['hiring']) ){
+            $query->whereIn('hiring', $filters['hiring']);
+        }
+        if( isset($filters['available']) ){
+            $query->whereIn('available', $filters['available']);
+        }
+        if( isset($filters['schedule']) ){
+            $query->whereIn('schedule', $filters['schedule']);
+        }
+        if( isset($filters['subcategory_id']) ){
+            $query->whereIn('subcategory_id', $filters['subcategory_id']);
+        }
     }
 }
