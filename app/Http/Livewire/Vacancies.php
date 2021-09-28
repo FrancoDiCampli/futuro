@@ -16,7 +16,7 @@ class Vacancies extends Component
     public function render()
     {
         $filters = [
-            'experience'=>['Graduado']
+            // 'experience'=>['Graduado']
         ];
 
 
