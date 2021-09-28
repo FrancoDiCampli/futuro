@@ -93,7 +93,7 @@
                 @else
 
                 @endif --}}
-                <img class="h-16 mt-5 mx-auto" src="{{asset('storage/'.$vacancy->recruiter->enterprise->user->photo->path)}}" alt="logo">
+                {{-- <img class="h-16 mt-5 mx-auto" src="{{asset('storage/'.$vacancy->recruiter->enterprise->user->photo->path)}}" alt="logo"> --}}
             {{-- <img class="h-16 mt-5 mx-auto" src="{{asset('img/logos/logo.png')}}" alt="ft"> --}}
 
 
