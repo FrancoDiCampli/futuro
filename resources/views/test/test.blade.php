@@ -1,19 +1,9 @@
-{{-- @extends('layouts.main')
+{{-- <img class="h-12 rounded-full shadow-sm" src="{{asset('storage/avatar/8/PQuy8XB0F4R9thRAxAkm1Z0Zh70JxaFsD1uiFkef.jpg') }}" alt="user"> --}}
+<img class="h-12 rounded-full shadow-sm" src="{{asset('storage/'.user()->photo->path) }}" alt="user">
 
-@section('content') --}}
-
-<div class="w-10/12 mx-auto">
-
-
-    <div class="title">
-        <div class="bg-main-blue text-white text-center">
-            <h1 class="text-2xl font-medium py-5">Crear <span class="font-semibold">reclutador</span></h1>
-            <p class="text-sm w-6/12 mx-auto py-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dolor enim, lacinia et sem et, rhoncus pharetra orci.</p>
-        </div>
-
-        <img src="{{$image}}" alt="">
-
-
-    </div>
-</div>
-{{-- @endsection --}}
+<pre>{{'storage/'.user()->photo->path}}</pre>
+<form action="{{route('save')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="photo" >
+    <button type="submit">Send</button>
+</form>

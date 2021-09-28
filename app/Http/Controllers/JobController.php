@@ -18,8 +18,8 @@ class JobController extends Controller
 {
     public function index(){
 
-        $jobs =  Vacancy::all();
-        return view('jobs.index',compact('jobs'));
+        $vacancies =  Vacancy::where('recruiter_id',user()->profile->id)->paginate(10);
+        return view('vacancy.index',compact('vacancies'));
     }
 
     public function create(){

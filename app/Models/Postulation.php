@@ -52,4 +52,5 @@ class Postulation extends Model
         return $query->whereStatus($status);
     }
 
+
 }

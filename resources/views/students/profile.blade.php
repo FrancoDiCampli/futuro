@@ -4,8 +4,13 @@
 
 <div class="w-10/12 mx-auto text-gray-700">
 
+    @if(isset($student->user->photo->path) )
+        <img class="h-24 rounded-full shadow-md my-5" src="{{asset('storage/'.$student->user->photo->path) }}" alt="student">
+    @else
+        <img class="h-24 rounded-full shadow-md my-5" src="" alt="user">
 
-    <img class="h-24 rounded-full shadow-md my-5" src="{{asset('assets/001 - Home/foto-mauricio.png')}}" alt="">
+    @endif
+
     <h1 class="text-2xl text-main-blue">{{$student->first_name}} {{$student->last_name}}</h1>
 
     <div class="flex  justify-start items-center my-2">
@@ -64,6 +69,7 @@
             </div>
         </div>
         <div class="aside w-4/12 text-sm">
+            @if(isset($postulations))
             <div class="bg-white mx-5 mt-14 p-5">
                 <p class="font-bold">Postuaciones</p>
 
@@ -78,6 +84,7 @@
             <a href="{{route('students.edit',$student)}}" class="flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">
                 Editar Perfil
             </a>
+            @endif
             {{-- <form action="{{route('students.edit',$student)}}" method="POST">
                 @csrf
 

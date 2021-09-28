@@ -119,6 +119,8 @@
                     </a>
                  </div>
             </div>
+
+            @if ($show)
             <form action="{{route('postulation')}}" method="POST">
                 @csrf
                 <input type="hidden" name="vacancy_id" value="{{$vacancy->id}}">
@@ -130,6 +132,9 @@
 
 
             </form>
+            @else
+               <div class="h-5"></div>
+            @endif
             <div class="flex items-center w-10/12 mx-auto justify-center">
                 <div class="bg-white px-5 py-2 rounded-full w-10/12 border border-main-blue mx-5 text-center">
                     Compartir

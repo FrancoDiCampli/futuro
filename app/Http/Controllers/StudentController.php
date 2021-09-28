@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\User;
 use App\Models\State;
 use App\Models\Country;
 use App\Models\Student;
@@ -28,10 +29,14 @@ class StudentController extends Controller
 
     public function index(){
 
-        $postulations = user()->profile->vacancies;
+        // $postulations = user()->profile->vacancies;
 
-        return view('admin.student.dashboard',compact('postulations'));
+        // return view('admin.student.dashboard',compact('postulations'));
+
+        $students = Student::orderBy('id')->paginate(1);
+        return view('students.index',compact('students'));
     }
+
 
     public function store(StudentStoreRequest $request){
 
@@ -82,12 +87,17 @@ class StudentController extends Controller
         $languages = Language::all();
         $software = Software::all();
         $vacancies = Vacancy::all();
+
+
+
         return view('students.edit',compact('student','categories','subcategories','countries','states','cities','skills','languages','software'));
     }
 
     public function show(Student $student){
 
-        return view('admin.estudiante.components.show',compact('student'));
+        // return $student->user->photo->path;
+        // $student = User::find(7);
+        return view('students.profile',compact('student'));
     }
 
 

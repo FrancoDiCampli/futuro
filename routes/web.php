@@ -59,6 +59,8 @@ Route::post('update-postulation-status',[\App\Http\Controllers\PostulationContro
 
 Route::get('postulations/{vacancy}/{student}',[App\Http\Controllers\VacancyController::class,'getPostulation'])->name('get.postulation');
 Route::post('update-status',[App\Http\Controllers\VacancyController::class,'updateStatus'])->name('update.status');
+
 Route::get('test',[App\Http\Controllers\TestController::class,'test']);
+Route::post('test',[App\Http\Controllers\TestController::class,'save'])->name('save');
 
 require __DIR__.'/auth.php';

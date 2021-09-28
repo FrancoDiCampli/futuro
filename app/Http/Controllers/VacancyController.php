@@ -18,9 +18,12 @@ class VacancyController extends Controller
 
     }
     public function show(Vacancy $vacancy){
-        $show = false;
+        $show = true;
+        $postulation = Postulation::where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+        if(isset($postulation))  $show = false;
 
-       return view('vacancy.show',compact('vacancy'));
+
+       return view('vacancy.show',compact('vacancy','show'));
 
     }
 

@@ -23,9 +23,7 @@ class PostulationController extends Controller
 
     public function show(Postulation $postulation){
 
-
-        return view('postulations.show',compact('postulation'));
-
+       return view('postulations.show',compact('postulation'));
     }
 
     public function updateStatus(Request $request){
@@ -42,7 +40,7 @@ class PostulationController extends Controller
 
           $user = User::find($postulation->student->user->id);
 
-          Notification::sendNow($user,new PostulationRejected($message));
+          Notification::send($user,new PostulationRejected($message));
 
       }
 
