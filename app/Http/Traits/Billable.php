@@ -65,8 +65,8 @@ trait Billable
     {
         $order = new ConektaGateway;
         $order = $order->createOrderWithInstallments($amount, $itemName,$installments);
-        // return $charge = $order['charges'][0];
-        return $order;
+        // return $charge = $order['charges'][0];   
+        return $order;   
     }
 
     public function hasCard()
