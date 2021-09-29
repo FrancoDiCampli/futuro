@@ -23,7 +23,6 @@ class StudentController extends Controller
     public function dashboard(){
         // return user()->id;
         $postulations = Postulation::where('student_id',user()->profile->id)->get();
-
         return view('admin.student.dashboard',compact('postulations'));
     }
 
@@ -42,8 +41,8 @@ class StudentController extends Controller
 
 
         $validated =  $request->validated();
-
         $student = DB::transaction(function () use ($validated) {
+            $count =  20 - count($validated);
             return Student::create([
                             'first_name'        =>$validated['first_name'],
                             'last_name'         =>$validated['last_name'],
@@ -64,9 +63,11 @@ class StudentController extends Controller
                             'birthdate'         =>$validated['birthdate'],
                             'subcategory_id'    =>$validated['subcategory_id'],
                             'city_id'           =>$validated['city_id'],
+                            'completed'         =>($count*100)/20
 
             ]);
         });
+
 
 
         // $student->avatar()->make()->upload($validated['avatar'], 'avatar/'.$student->id, 'avatar');
@@ -87,7 +88,6 @@ class StudentController extends Controller
         $languages = Language::all();
         $software = Software::all();
         $vacancies = Vacancy::all();
-
 
 
         return view('students.edit',compact('student','categories','subcategories','countries','states','cities','skills','languages','software'));

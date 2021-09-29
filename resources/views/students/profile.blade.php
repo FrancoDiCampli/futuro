@@ -4,10 +4,11 @@
 
 <div class="w-10/12 mx-auto text-gray-700">
 
-    @if(isset($student->user->photo->path) )
+    @if(isset($student->user->photo) )
+
         <img class="h-24 rounded-full shadow-md my-5" src="{{asset('storage/'.$student->user->photo->path) }}" alt="student">
     @else
-        <img class="h-24 rounded-full shadow-md my-5" src="" alt="user">
+        <img class="h-24 rounded-full shadow-md my-5" src="{{asset('storage/avatar/user.png')}}" alt="user">
 
     @endif
 
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </div>
+
         <div class="aside w-4/12 text-sm">
             @if(isset($postulations))
             <div class="bg-white mx-5 mt-14 p-5">
@@ -84,6 +86,17 @@
             <a href="{{route('students.edit',$student)}}" class="flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">
                 Editar Perfil
             </a>
+
+            @else
+
+                    <button type="button"
+                        onclick="Livewire.emit('openModal', 'invite-student',{{ json_encode(['student' => $student->id]) }})"
+                        class="mt-32 flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">
+                        <p class="font-semibold">Invitar a vacantes</p>
+                        <svg aria-hidden="true" data-prefix="fas" data-icon="arrow-up" class="h-4 svg-inline--fa fa-arrow-up fa-w-14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="m34.9 289.5-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+
+                    </button>
+
             @endif
             {{-- <form action="{{route('students.edit',$student)}}" method="POST">
                 @csrf

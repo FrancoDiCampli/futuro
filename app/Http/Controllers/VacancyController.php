@@ -25,7 +25,7 @@ class VacancyController extends Controller
     }
     public function show(Vacancy $vacancy){
         $show = true;
-        $postulation = Postulation::where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+        $postulation = Postulation::where('status','new')->where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
         if(isset($postulation))  $show = false;
 
 
@@ -41,6 +41,7 @@ class VacancyController extends Controller
     }
 
     public function updateStatus(Request $request){
+
 
         $postulation = Postulation::find($request->postulation_id);
         $postulation->state = $request->status;

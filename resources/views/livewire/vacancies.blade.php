@@ -89,12 +89,13 @@
         @foreach ($vacancies as $vacancy)
         <a href="{{route('vacancies.show',$vacancy->id)}}" class="card w-56 bg-white space-x-2 mx-1 text-gray-700 justify-center mt-5 cursor-pointer">
 
-            {{-- @if (isset($vacancy->recruiter->user->logo))
-                @else
+                @if (isset($vacancy->recruiter->enterprise->user->photo))
 
-                @endif --}}
-                <img class="h-16 mt-5 mx-auto" src="{{asset('storage/'.$vacancy->recruiter->enterprise->user->photo->path)}}" alt="logo">
-            {{-- <img class="h-16 mt-5 mx-auto" src="{{asset('img/logos/logo.png')}}" alt="ft"> --}}
+                    <img class="h-16 mt-5 mx-auto" src="{{asset('storage/'.$vacancy->recruiter->enterprise->user->photo->path)}}" alt="logo">
+                @else
+                    <img class="h-16 mt-5 mx-auto" src="{{asset('img/logos/logo.png')}}" alt="ft">
+
+                @endif
 
 
             <div class="my-5">

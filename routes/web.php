@@ -43,7 +43,6 @@ Route::resource('notes',App\Http\Controllers\NoteController::class)->middleware(
 Route::get('vacancies/{filters?}',[App\Http\Controllers\VacancyController::class,'index'])->name('vacancies.index');
 
 
-
 // Test stage
 // Route::resource('messages',App\Http\Controllers\MessageController::class)->middleware(['auth']);
 
