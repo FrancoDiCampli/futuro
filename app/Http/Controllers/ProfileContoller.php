@@ -46,7 +46,7 @@ class ProfileContoller extends Controller
         $software = Software::all();
         $vacancies = Vacancy::all();
 
-        if(!user()->hasStudentProfile) return view('admin.student.complet',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
+        if(!user()->hasStudentProfile) return view('admin.student.profile.create',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
         // $postulations = Postulation::where('student_id',user()->profile->id)->get();
         // return view('admin.student.dashboard',compact('postulations'));
         return redirect()->route('students.dashboard');

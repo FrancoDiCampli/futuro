@@ -30,8 +30,12 @@
            @yield('content')
 
         </main>
+        <footer>
+            {{-- @include('components.footer') --}}
+        </footer>
         @livewire('livewire-ui-modal')
         @livewireScripts
         @stack('scripts')
+
     </body>
 </html>

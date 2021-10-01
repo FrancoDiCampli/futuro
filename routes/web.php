@@ -80,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('test',[App\Http\Controllers\TestController::class,'test']);
     Route::post('test',[App\Http\Controllers\TestController::class,'save'])->name('save');
+
+    Route::get('share/{vacancy}/{red?}',[App\Http\Controllers\SocialShareController::class,'share'])->name('share.vacancy');
 });
 
 require __DIR__.'/auth.php';

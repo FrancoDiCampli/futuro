@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Models\Vacancy;
+
 use App\Models\Postulation;
 use Illuminate\Http\Request;
-
+use Share;
 class VacancyController extends Controller
 {
     public function index($filters=null){
@@ -24,12 +25,22 @@ class VacancyController extends Controller
 
     }
     public function show(Vacancy $vacancy){
+
+        $socials = Share::page(route('vacancies.show',$vacancy),$vacancy->title)
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->telegram()
+                ->whatsapp()
+                ->getRawLinks();
+
+
         $show = true;
         $postulation = Postulation::where('status','new')->where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
         if(isset($postulation))  $show = false;
 
 
-       return view('vacancy.show',compact('vacancy','show'));
+       return view('vacancy.show',compact('vacancy','show','socials'));
 
     }
 
