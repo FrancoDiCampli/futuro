@@ -11,8 +11,8 @@
             <p class="w-6/12 py-5 mx-auto text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dolor enim, lacinia et sem et, rhoncus pharetra orci.</p>
         </div>
 
-        {{-- <form action="{{route('recruiters.store')}}" method="POST" enctype="multipart/form-data">
-            @csrf --}}
+        <form action="{{route('recruiters.store')}}" method="POST" enctype="multipart/form-data">
+            @csrf
             {{-- <div x-data="{ show: false }" class="flex items-center ">
                 <div class="flex items-start w-3/12 px-2 my-5">
                     <input type="checkbox" name="belong_enterprise" @click="show = !show" class="mt-1 border-gray-200 rounded-sm focus:outline-none">
@@ -37,14 +37,14 @@
                     <label for="" class="block px-5 text-base font-semibold text-main-blue">Nombre</label>
                     <input class="rounded-full border border-gray-200 text-base w-full px-5
                         @error('first_name') border-red-500 @enderror" type="text" placeholder="Nombres"  name="first_name" id="first_name" value="{{ old('first_name') }}">
-                        @error('first_name')<span class="text-xs text-red-500 ">{{ $message }}</span>@enderror
+                       <span class="text-xs text-red-500 "> @error('first_name'){{ $message }}@enderror</span>
                 </div>
 
                 <div class="w-6/12 px-10 py-5">
                     <label for="" class="block px-5 text-base font-semibold text-main-blue">Apellido</label>
                     <input class="rounded-full border border-gray-200 text-base w-full px-5
                         @error('last_name') border-red-500 @enderror" type="text" placeholder="Nombres"  name="last_name" id="last_name" value="{{ old('last_name') }}">
-                        @error('last_name')<span class="text-xs text-red-500 ">{{ $message }}</span>@enderror
+                        <span class="text-xs text-red-500 ">@error('last_name'){{ $message }}@enderror</span>
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
                     <label for="" class="block px-5 text-base font-semibold text-main-blue">Telefono</label>
                     <input class="rounded-full border border-gray-200 text-base w-full px-5
                         @error('phone') border-red-500 @enderror" type="text" placeholder="Telefono"  name="phone" id="phone" value="{{ old('phone') }}">
-                        @error('phone')<span class="text-xs text-red-500 ">{{ $message }}</span>@enderror
+                       <span class="text-xs text-red-500 "> @error('phone'){{ $message }}@enderror</span>
                 </div>
 
                 <div class="w-6/12 px-10 py-5">
@@ -74,15 +74,16 @@
                             <option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
                     </select>
+                    <span class="text-xs text-red-500 "> @error('city_id'){{ $message }}@enderror</span>
                 </div>
             </div>
 
 
-            {{-- <div class="flex justify-center">
+            <div class="flex justify-center">
                 <button type="submit" class="px-5 py-2 font-semibold text-white rounded-full bg-main-blue">Siguiente</button>
-            </div> --}}
+            </div>
 
-        {{-- </form> --}}
+        </form>
     </div>
 
 </div>

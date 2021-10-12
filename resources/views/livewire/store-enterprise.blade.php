@@ -25,11 +25,12 @@
                 <select required class="w-full px-5 text-base border border-gray-200 rounded-full focus:outline-none"
                     wire:model='city_id'
                 >
-                    <option value="">Seleccione una cuidad</option>
+                    <option >Seleccione una cuidad</option>
                     @foreach ($cities as $city)
                         <option value="{{$city->id}}">{{$city->name}}</option>
                     @endforeach
                 </select>
+                <span class="text-xs text-red-500 ">@error('city_id'){{ $message }}@enderror</span>
             </div>
             <div class="w-6/12 p-5">
 
@@ -37,8 +38,9 @@
                 class="flex flex-col items-center w-64 px-4 py-6 tracking-wide uppercase transition-all duration-150 ease-linear bg-white border rounded-md shadow-md cursor-pointer border-blue hover:bg-main-blue hover:text-white text-main-blue">
                 <svg aria-hidden="true" data-prefix="fas" data-icon="cloud-upload-alt" class="h-6 svg-inline--fa fa-cloud-upload-alt fa-w-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M537.6 226.6c4.1-10.7 6.4-22.4 6.4-34.6 0-53-43-96-96-96-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32c-88.4 0-160 71.6-160 160 0 2.7.1 5.4.2 8.1C40.2 219.8 0 273.2 0 336c0 79.5 64.5 144 144 144h368c70.7 0 128-57.3 128-128 0-61.9-44-113.6-102.4-125.4zM393.4 288H328v112c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V288h-65.4c-14.3 0-21.4-17.2-11.3-27.3l105.4-105.4c6.2-6.2 16.4-6.2 22.6 0l105.4 105.4c10.1 10.1 2.9 27.3-11.3 27.3z"/></svg>
                 <span class="mt-2 text-base leading-normal">Select a file</span>
-                <input type='file' class="hidden" name="logo" />
+                <input type='file' class="hidden" name="logo" wire:model.defer="logo" />
               </label>
+              @error('logo') <span class="error">{{ $message }}</span> @enderror
             </div>
         </div>
 
@@ -67,6 +69,7 @@
                     <option value="otros">Otros</option>
 
                 </select>
+                <span class="text-xs text-red-500 ">@error('sector'){{ $message }}@enderror</span>
             </div>
 
         </div>
@@ -84,6 +87,8 @@
                     <option value="otros">Otros</option>
 
                 </select>
+                <span class="text-xs text-red-500 ">@error('turn'){{ $message }}@enderror</span>
+
             </div>
             <div class="w-6/12 p-5">
                 <label for="" class="block px-5 text-base font-semibold text-main-blue">Sitio web</label>

@@ -96,8 +96,9 @@ class StudentController extends Controller
         // $total =  $student->percentage;
 
         $completed = json_decode($student->completed);
-        $personal = $completed->personal;
-        $education = $completed->education;
+        (isset($completed->personal)) ? ($personal = $completed->personal) : $personal = 0;
+        (isset($completed->education)) ? ($education = $completed->education) : $education = 0;
+        // $education = $completed->education;
         $total = $personal+$education;
 
         $per = round(($total/20)*100,2);
@@ -167,11 +168,14 @@ class StudentController extends Controller
         $languages = Language::all();
         $software = Software::all();
         $vacancies = Vacancy::all();
-        if(!user()->hasStudentProfile) return view('admin.student.profile.create',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
+
+        $per = 0;
+
+        if(!user()->hasStudentProfile) return view('admin.student.profile.create',compact('categories','subcategories','countries','states','cities','skills','languages','software','per'));
         $student = Student::find(user()->profile->id);
         $postulations =  Postulation::where('student_id',$student->id)->get();
 
-        return view('students.profile',compact('student','postulations'));
+        return view('students.profile',compact('student','postulations','per'));
     }
 
     public function updateProfile(Request $request,Student $student){

@@ -6,9 +6,11 @@ use App\Models\City;
 use App\Models\Enterprise;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
-
+use Livewire\WithFileUploads;
 class StoreEnterprise extends ModalComponent
-{   public $cities;
+{
+    use WithFileUploads;
+    public $cities;
 
     public $name;
     public $employees;
@@ -21,6 +23,7 @@ class StoreEnterprise extends ModalComponent
     public $business_name;
     public $city_id;
 
+    public $logo;
     public function mount(){
         $this->cities = City::all();
     }
@@ -42,6 +45,7 @@ class StoreEnterprise extends ModalComponent
             'vision'        => 'required',
             'rfc'           => 'required',
             'business_name' => 'required',
+            'logo'         => 'image', // 1MB Max
         ]);
 
         $enterprise = Enterprise::create([
@@ -56,6 +60,9 @@ class StoreEnterprise extends ModalComponent
             'rfc'           => $this->rfc,
             'business_name' => $this->business_name
         ]);
+
+        $enterprise->logo()->make()->upload($this->logo, 'logo/'.user()->id, 'logo');
+
         $this->clearForm();
     }
 
