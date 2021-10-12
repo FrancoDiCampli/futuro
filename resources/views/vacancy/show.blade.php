@@ -1,7 +1,20 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="alert bg-main-blue text-white h-18 p-5 flex items-center justify-between">
+    <div class="flex">
+        <p>¡Completa tu perfil y participa en la vacantes!</p>
 
+        <a href="" class="text-sm mx-10 flex items-center">Editar Perfil
+            <svg aria-hidden="true" data-prefix="fas" data-icon="arrow-right" class="mx-2 h-4 svg-inline--fa fa-arrow-right fa-w-14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="m190.5 66.9 22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </a>
+    </div>
+
+    <button class="">
+        <svg aria-hidden="true" data-prefix="fas" data-icon="times" class="h-4 svg-inline--fa fa-times fa-w-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="m242.72 256 100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
+    </button>
+
+</div>
 <div class="w-10/12 mx-auto text-gray-700">
     <a class="text-xs text-main-blue font-semibold" href="{{route('vacancies.index')}}">Regresar</a>
     <div>
@@ -121,25 +134,38 @@
                  </div>
             </div>
 
-            @if ($show)
-                <div>
-                    <button type="button"
-                        onclick="Livewire.emit('openModal', 'student-postulation',{{ json_encode(['vacancy' => $vacancy->id]) }})"
-                        class="flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">Postularme</button>
-                </div>
-            @else
-                <div class="flex justify-center ">
+            @if (!$alert)
 
-                    <a href="" class="bg-lime text-white px-5 py-2 rounded-full my-5">Postulado</a>
-                </div>
+                @if ($show)
+                    <div>
+                        <button type="button"
+                            onclick="Livewire.emit('openModal', 'student-postulation',{{ json_encode(['vacancy' => $vacancy->id]) }})"
+                            class="flex items-center w-10/12 mx-auto justify-center text-center bg-main-blue text-white m-5 rounded-full py-2">Postularme</button>
+                    </div>
+                @else
+                    <div class="flex justify-center ">
+
+                        <a href="" class="bg-lime text-white px-5 py-2 rounded-full my-5">Postulado</a>
+                    </div>
+                @endif
             @endif
-            <div class="flex  w-10/12 mx-auto justify-center items-start">
+            <div class="flex  w-10/12 mx-auto justify-center items-start mt-5">
                 <div x-data="{ social: false }">
-                    <button  @click="social = true" class="bg-white px-5 py-2 rounded-full w-10/12 border border-main-blue mx-5 text-center">
+                    <button x-on:mouseover="social = true"
+                            x-on:mouseleave="social = false"
+                            class="bg-white px-5 py-2 rounded-full w-10/12 border border-main-blue mx-5 text-center">
                         Compartir
                     </button>
-                    <div x-show="social" @click.away="social = false" class="bg-white rounded-full px-3 py-2 mt-2">
-                        <div  class="buttons flex items-center justify-between">
+                    <div x-show="social"
+                    x-transition:enter="transition ease-out duration-1500"
+                    x-transition:enter-start="transform opacity-0 scale-95"
+                    x-transition:enter-end="transform opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-1300"
+                    x-transition:leave-start="transform opacity-100 scale-100"
+                    x-transition:leave-end="transform opacity-0 scale-95"
+                             class="bg-white rounded-full px-3 py-2 mt-2">
+                        <div    x-on:mouseover="social = true"
+                                x-on:mouseleave="social = false" class="h-12 top-0 z-10 w-32 buttons flex items-center justify-between">
 
                             <a href="{{$socials['twitter']}}" target="_blank">
                                 <svg aria-hidden="true" data-prefix="fab" data-icon="twitter"
@@ -165,9 +191,21 @@
                 </div>
 
                 <div x-data="{ open: false }">
-                    <button  @click="open = true" class="bg-white px-4 py-2 rounded-full align-middle ">...</button>
-                    <div x-show="open" @click.away="open = false" class="bg-white rounded-full px-3 py-2 mt-2 text-red-500 text-sm">
-                        <button>
+                    <button
+                        x-on:mouseover="open = true"
+                        x-on:mouseleave="open = false" class="bg-white px-4 py-2 rounded-full align-middle ">...</button>
+                    <div x-show="open"
+                            x-transition:enter="transition ease-out duration-1500"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-1300"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                        class="relative">
+                        <button
+                            x-on:mouseover="open = true"
+                            x-on:mouseleave="open = false"
+                            class="absolute top-0 z-10 h-12 left-0  rounded-full px-3 py-2 mt-2  text-sm bg-white text-red-500">
                             Reportar
                         </button>
                     </div>

@@ -12,7 +12,7 @@ class VacancyController extends Controller
 {
     public function index($filters=null){
 
-        $post = user()->profile->vacancies->modelKeys();
+        // $post = user()->profile->vacancies->modelKeys();
 
         // $filters = [
         //     'city_id'   =>   [1,2,4],
@@ -36,11 +36,16 @@ class VacancyController extends Controller
 
 
         $show = true;
-        $postulation = Postulation::where('status','new')->where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+        $alert = true;
+        if(isset(user()->profile->id)) {
+            $postulation = Postulation::where('status','new')->where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+
+            if(user()->profile->completed> 50) $alert = false;
+        }
         if(isset($postulation))  $show = false;
 
 
-       return view('vacancy.show',compact('vacancy','show','socials'));
+       return view('vacancy.show',compact('vacancy','show','socials','alert'));
 
     }
 

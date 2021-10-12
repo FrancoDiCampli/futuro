@@ -27,12 +27,22 @@
 
     </div>
 
-    <div class="bg-white my-10 text-sm">
+    <div class="bg-white my-10 text-xs">
         <h1>Filtros</h1>
         <form action="" method="POST" >
 
-            <div class="row flex flex-wrap">
-                <div class="p-5 w-4/12">
+            <div class="row flex flex-wrap ">
+                <div class="p-5 w-3/12">
+                    <span>{{$experience}}</span>
+                    <label for="" class="text-main-blue block font-semibold px-5">Estado</label>
+                    <select wire:model="experience"  class="rounded-full border border-gray-200 w-full px-5  focus:outline-none h-9 text-sm"
+                        name="experience" id="">
+                       @foreach (Config::get('locations.states') as $state)
+                       <option value="{{$state}}">{{$state}}</option>
+                       @endforeach
+                    </select>
+                </div>
+                <div class="p-5 w-3/12">
                     <span>{{$experience}}</span>
                     <label for="" class="text-main-blue block font-semibold px-5">Experiencia</label>
                     <select wire:model="experience"  class="rounded-full border border-gray-200 w-full px-5  focus:outline-none h-9 text-sm"
@@ -43,8 +53,8 @@
                         <option value="2do año">2do año</option>
                     </select>
                 </div>
-                <div class="p-5 w-4/12">
-                    <label for="" class="text-base text-main-blue block font-semibold px-5">Contratacion</label>
+                <div class="p-5 w-3/12">
+                    <label for="" class="text-main-blue block font-semibold px-5">Contratacion</label>
                     <select class="rounded-full border border-gray-200 w-full px-5  focus:outline-none h-9 text-sm"
                     name="hiring" id="">
                         <option value="Permanente">Permanente</option>
@@ -53,8 +63,8 @@
                         <option value="Becario">Becario</option>
                     </select>
                 </div>
-                <div class="p-5 w-4/12">
-                    <label for="" class="text-base text-main-blue block font-semibold px-5">Disponibilidad</label>
+                <div class="p-5 w-3/12">
+                    <label for="" class="text-main-blue block font-semibold px-5">Disponibilidad</label>
                     <select class="rounded-full border border-gray-200 w-full px-5  focus:outline-none h-9 text-sm"
                         name="available" id="">
                         <option value="Tiempo completo">Tiempo completo</option>

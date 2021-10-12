@@ -17,6 +17,7 @@
         </ul>
 
         <div class="mx-auto">
+            @if(count($postulations)>0)
             <div x-show="activeTab===0">
                 <div class="content flex flex-wrap">
                     @include('admin.student.components.active')
@@ -27,6 +28,9 @@
                     @include('admin.student.components.invitation')
                 </div>
             </div>
+            @else
+                <p class="text-main-blue text-sm font-semibold">No posee postulaciones activas</p>
+            @endif
 
         </div>
     </div>

@@ -26,10 +26,6 @@ class TestController extends Controller
     use FileTrait;
 
     public function test(){
-        $student = Student::find(1);
-        $postulations = $student->vacancies;
-
-        return Vacancy::whereNotIn('id',$postulations->modelKeys())->where('recruiter_id',user()->profile->id)->get()  ;
 
         return view('test.test');
     }

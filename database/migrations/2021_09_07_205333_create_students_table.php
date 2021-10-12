@@ -17,12 +17,11 @@ class CreateStudentsTable extends Migration
 
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            // $table->string('email');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->boolean('tos');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->boolean('tos')->nullable();
             $table->boolean('notification')->nullable();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('experience')->nullable();
             $table->string('university')->nullable();
             $table->date('graduated_at')->nullable();
@@ -34,10 +33,10 @@ class CreateStudentsTable extends Migration
             $table->text('courses')->nullable();
             $table->text('hobbies')->nullable();
             $table->string('website')->nullable();
-            $table->date('birthdate');
-            $table->float('completed')->nullable();
-            $table->foreignId('subcategory_id')->constrained();
-            $table->foreignId('city_id')->constrained();
+            $table->date('birthdate')->nullable();
+            $table->json('completed')->nullable();
+            $table->foreignId('subcategory_id')->nullable()->constrained();
+            $table->foreignId('city_id')->nullable()->constrained();
            // $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

@@ -81,7 +81,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('test',[App\Http\Controllers\TestController::class,'test']);
     Route::post('test',[App\Http\Controllers\TestController::class,'save'])->name('save');
 
-    Route::get('share/{vacancy}/{red?}',[App\Http\Controllers\SocialShareController::class,'share'])->name('share.vacancy');
+    Route::put('update-student-profile/{student}',[App\Http\Controllers\StudentController::class,'updateProfile'])->name('update.student.profile');
+    Route::put('update-student-education/{student}',[App\Http\Controllers\StudentController::class,'updateEducation'])->name('update.student.education');
+    Route::put('update-student-experience/{student}',[App\Http\Controllers\StudentController::class,'updateExerience'])->name('update.student.experience');
 });
 
 require __DIR__.'/auth.php';

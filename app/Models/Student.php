@@ -34,6 +34,7 @@ class Student extends Model
         'birthdate',
         'subcategory_id',
         'city_id',
+        'completed'
     ];
 
 
@@ -64,6 +65,7 @@ class Student extends Model
         'skills'   => 'array',
     ];
 
+    public $appends = ['percentage'];
 
     public function subcategory()
     {
@@ -101,5 +103,12 @@ class Student extends Model
         return $this->hasMany(Experience::class);
     }
 
+    public function getPercentageAttribute(){
 
+        // $com = json_decode($this->completed);
+
+        // return $total = intval($com->personal) + intval($com->education);
+
+        // return round(($total/20) * 100,2);
+    }
 }

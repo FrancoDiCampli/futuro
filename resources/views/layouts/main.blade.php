@@ -16,17 +16,17 @@
         @livewireStyles
     </head>
     <body class="bg-gray-100 ">
-        <div class="bg-gray-100 text-gray-600">
+        <div class="text-gray-600 bg-gray-100">
             @include('layouts.navigation')
         </div>
-        <main class="w-11/12 font-poppins mx-auto mt-5">
-            @if ($errors->any())
-                <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+        <main class="w-11/12 mx-auto mt-5 font-poppins">
+            {{-- @if ($errors->any())
+                <ul class="mt-3 text-sm text-red-600 list-disc list-inside">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-            @endif
+            @endif --}}
            @yield('content')
 
         </main>
