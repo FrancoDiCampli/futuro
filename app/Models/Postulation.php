@@ -33,7 +33,7 @@ class Postulation extends Model
         'visible' => 'boolean',
     ];
 
-    const STATUS=['new','rejected','final'];
+    const STATUS=['new','invited','rejected','final'];
 
     public function vacancy()
     {

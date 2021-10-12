@@ -20,6 +20,7 @@ class Vacancies extends Component
         ];
 
 
+
         $this->vacancies =  Vacancy::Filter($filters)->orderBy('created_at','asc')->paginate(12);
         return view('livewire.vacancies',['vacancies'=>$this->vacancies]);
     }

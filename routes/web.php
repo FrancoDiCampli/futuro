@@ -61,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('recruiters', App\Http\Controllers\RecruiterController::class);
     Route::resource('students', App\Http\Controllers\StudentController::class);
     Route::resource('jobs',App\Http\Controllers\JobController::class);
-    
+
     Route::get('vacancies/{filters?}',[App\Http\Controllers\VacancyController::class,'index'])->name('vacancies.index');
 
     // Test stage
@@ -71,15 +71,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('unread-notifications',[App\Http\Controllers\MessageController::class,'unread'])->name('unread.notifications');
 
     // Route::get('student-dashboard',[\App\Http\Controllers\StudentController::class,'dashboard'])->name('students.dashboard');
-    
 
-    // Portulations    
+
+    // Portulations
     Route::post('update-postulation-status',[\App\Http\Controllers\PostulationController::class,'updateStatus'])->name('update.postulation.status');
     Route::get('postulations/{vacancy}/{student}',[App\Http\Controllers\VacancyController::class,'getPostulation'])->name('get.postulation');
     Route::post('update-status',[App\Http\Controllers\VacancyController::class,'updateStatus'])->name('update.status');
 
     Route::get('test',[App\Http\Controllers\TestController::class,'test']);
     Route::post('test',[App\Http\Controllers\TestController::class,'save'])->name('save');
+
+    Route::put('update-student-profile/{student}',[App\Http\Controllers\StudentController::class,'updateProfile'])->name('update.student.profile');
+    Route::put('update-student-education/{student}',[App\Http\Controllers\StudentController::class,'updateEducation'])->name('update.student.education');
+    Route::put('update-student-experience/{student}',[App\Http\Controllers\StudentController::class,'updateExerience'])->name('update.student.experience');
 });
 
 require __DIR__.'/auth.php';

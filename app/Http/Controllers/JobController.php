@@ -13,6 +13,7 @@ use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreJobRequest;
+use App\Models\Postulation;
 
 class JobController extends Controller
 {
@@ -71,7 +72,18 @@ class JobController extends Controller
     public function postulation(Request $request){
 
         $vacancy = Vacancy::find($request->vacancy_id);
-        user()->profile->vacancies()->attach($vacancy->id,['visible'=>true,'status'=>'new']);
-        return redirect()->route('vacancies.index');
+        $postulation = Postulation::where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+
+        if(isset($postulation)){
+            $postulation->update([
+                'status'    =>'new'
+            ]);
+        }else{
+
+            user()->profile->vacancies()->attach($vacancy->id,['visible'=>true,'status'=>'new']);
+        }
+
+        // return redirect()->route('vacancies.index');
+        return redirect()->route('students.dashboard');
     }
 }

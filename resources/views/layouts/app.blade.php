@@ -22,7 +22,7 @@
 
             <!-- Page Heading -->
             {{-- <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
@@ -30,7 +30,7 @@
             <!-- Page Content -->
             <main>
                 <div class="py-12">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div class="overflow-hidden shadow-sm sm:rounded-lg">
                             @yield('content')
                         </div>
@@ -40,5 +40,6 @@
                 {{-- {{ $slot }} --}}
             </main>
         </div>
+
     </body>
 </html>

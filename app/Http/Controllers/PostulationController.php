@@ -18,7 +18,7 @@ class PostulationController extends Controller
     public function index($vacancy){
         $postulations = Postulation::where('vacancy_id',$vacancy)->get();
         $vacancy = Vacancy::find($vacancy);
-       return view('postulations.index',compact('postulations','vacancy'));
+        return view('postulations.index',compact('postulations','vacancy'));
     }
 
     public function show(Postulation $postulation){

@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Models\Vacancy;
+
 use App\Models\Postulation;
 use Illuminate\Http\Request;
-
+use Share;
 class VacancyController extends Controller
 {
     public function index($filters=null){
 
-        $post = user()->profile->vacancies->modelKeys();
+        // $post = user()->profile->vacancies->modelKeys();
 
         // $filters = [
         //     'city_id'   =>   [1,2,4],
@@ -24,12 +25,27 @@ class VacancyController extends Controller
 
     }
     public function show(Vacancy $vacancy){
+
+        $socials = Share::page(route('vacancies.show',$vacancy),$vacancy->title)
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->telegram()
+                ->whatsapp()
+                ->getRawLinks();
+
+
         $show = true;
-        $postulation = Postulation::where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+        $alert = true;
+        if(isset(user()->profile->id)) {
+            $postulation = Postulation::where('status','new')->where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
+
+            if(user()->profile->completed> 50) $alert = false;
+        }
         if(isset($postulation))  $show = false;
 
 
-       return view('vacancy.show',compact('vacancy','show'));
+       return view('vacancy.show',compact('vacancy','show','socials','alert'));
 
     }
 
@@ -41,6 +57,7 @@ class VacancyController extends Controller
     }
 
     public function updateStatus(Request $request){
+
 
         $postulation = Postulation::find($request->postulation_id);
         $postulation->state = $request->status;

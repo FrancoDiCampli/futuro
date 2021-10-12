@@ -14,7 +14,9 @@ class RecruiterController extends Controller
 
 
 
-    public function store(StoreRecruiterRequest $request){
+    public function store(Request $request){
+
+        return $request;
 
         $validated =  $request->validated();
 

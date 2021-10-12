@@ -51,8 +51,8 @@ class Enterprise extends Model
         return $this->hasMany(\App\Models\Recruiter::class);
     }
 
-    // public function logo()
-    // {
-    //     return $this->morphOne(File::class, 'fileable');
-    // }
+    public function logo()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }

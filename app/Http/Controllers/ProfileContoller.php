@@ -13,6 +13,7 @@ use App\Models\Language;
 use App\Models\Postulation;
 use App\Models\Recruiter;
 use App\Models\Software;
+use App\Models\Student;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,19 +37,12 @@ class ProfileContoller extends Controller
         return view('admin.enterprise.dashboard',compact('recruiters'));
     }
     public function studentDashboard(){
-        $skills =  Vacancy::SKILLS;
-        $categories =  Category::all();
-        $subcategories =  Subcategory::all();
-        $cities =  City::all();
-        $countries = Country::all();
-        $states = State::all();
-        $languages = Language::all();
-        $software = Software::all();
-        $vacancies = Vacancy::all();
 
-        if(!user()->hasStudentProfile) return view('admin.student.complet',compact('categories','subcategories','countries','states','cities','skills','languages','software'));
-        // $postulations = Postulation::where('student_id',user()->profile->id)->get();
-        // return view('admin.student.dashboard',compact('postulations'));
+        if(!user()->hasStudentProfile) {
+            $student = Student::create();
+            $student->user()->save(user());
+        };
+
         return redirect()->route('students.dashboard');
     }
     public function recruiterDashboard(){

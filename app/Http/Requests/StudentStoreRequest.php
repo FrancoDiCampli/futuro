@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Traits\Profile;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StudentStoreRequest extends FormRequest
@@ -25,11 +26,12 @@ class StudentStoreRequest extends FormRequest
     {
 
         return [
-            'first_name'            =>'required',
-            'last_name'             =>'required',
-            'tos'                   =>'required',
+            'id'                    =>'required',
+            'first_name'            =>'nullable',
+            'last_name'             =>'nullable',
+            'tos'                   =>'nullable',
             'notification'          =>'nullable',
-            'title'                 =>'required',
+            'title'                 =>'nullable',
             'experience'            =>'nullable',
             'university'            =>'nullable',
             'graduated_at'          =>'nullable',
@@ -41,14 +43,15 @@ class StudentStoreRequest extends FormRequest
             'courses'               =>'nullable',
             'hobbies'               =>'nullable',
             'website'               =>'nullable',
-            'birthdate'             =>'required',
+            'birthdate'             =>'nullable',
             'avatar'                =>'nullable',
             'subcategory_id'        =>'nullable',
-            'city_id'               =>'required',
+            'city_id'               =>'nullable',
         ];
     }
     protected function prepareForValidation()
     {
+
         ($this->has('tos')) ? ($tos = 1) : ($tos = 0);
         ($this->has('notification')) ? ($notification = 1) : ($notification = 0);
         $this->merge([
