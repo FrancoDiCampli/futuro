@@ -99,7 +99,7 @@ class StudentController extends Controller
         (isset($completed->personal)) ? ($personal = $completed->personal) : $personal = 0;
         (isset($completed->education)) ? ($education = $completed->education) : $education = 0;
         // $education = $completed->education;
-        $total = $personal+$education;
+        return $total = $personal+$education;
 
         $per = round(($total/20)*100,2);
 
