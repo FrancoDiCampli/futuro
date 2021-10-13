@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Perafan\CashierOpenpay\Billable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recruiter extends Model
 {
-    use HasFactory;
+    use HasFactory, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,8 @@ class Recruiter extends Model
         'belong_enterprise',
         'enterprise_id',
         'city_id',
-        'status'
+        'status',
+        'openpay_id'
     ];
 
     /**

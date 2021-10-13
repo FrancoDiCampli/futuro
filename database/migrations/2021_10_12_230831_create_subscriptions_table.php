@@ -13,18 +13,18 @@ class CreateSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->id();
-            $table->string('plan');
-            $table->date('started_at');
-            $table->date('end_at');
-            $table->date('paid_at');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+
+            $table->string('openpay_id')->index();
+            $table->string('name');
+            $table->string('openpay_status');
+            $table->string('openpay_plan');
+            $table->timestamp('trial_ends_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

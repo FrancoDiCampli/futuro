@@ -24,6 +24,7 @@ class CreateRecruitersTable extends Migration
             $table->integer('status');
             $table->foreignId('enterprise_id')->constrained();
             $table->foreignId('city_id')->constrained();
+            $table->string('openpay_id')->nullable();
 
             $table->timestamps();
         });

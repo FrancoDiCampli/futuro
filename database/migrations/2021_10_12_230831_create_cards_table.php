@@ -14,13 +14,19 @@ class CreateCardsTable extends Migration
     public function up()
     {
         Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('gateway');
-            $table->string('token');
-            $table->string('brand');
-            $table->string('last_four');
-            $table->date('expiration_date');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+
+            $table->string('openpay_id')->index();
+            $table->string('type');
+            $table->string('brand')->nullable();
+            $table->string('holder_name');
+            $table->string('card_number');
+            $table->string('expiration_month', 2);
+            $table->string('expiration_year', 2);
+            $table->string('bank_name');
+            $table->string('bank_code');
+
             $table->timestamps();
         });
     }

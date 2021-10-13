@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb26dc77c8d411e974eb638bb6193f3b",
+    "content-hash": "0b56cdf5a29ffb484d2716b9e1b2961e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2290,6 +2290,58 @@
             "time": "2021-09-20T12:20:58+00:00"
         },
         {
+            "name": "openpay/sdk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/open-pay/openpay-php.git",
+                "reference": "73a9374c2303525ff95799c7be729d94042c694b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/open-pay/openpay-php/zipball/73a9374c2303525ff95799c7be729d94042c694b",
+                "reference": "73a9374c2303525ff95799c7be729d94042c694b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-hash": "*",
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Openpay": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Openpay",
+                    "email": "soporte@openpay.mx",
+                    "homepage": "http://www.openpay.mx/docs/libraries.html"
+                },
+                {
+                    "name": "Federico Balderas",
+                    "email": "federico.balderas@openpay.mx",
+                    "homepage": "https://openpay.mx"
+                }
+            ],
+            "description": "This is a client implementing the payment services for Openpay at openpay.mx",
+            "support": {
+                "issues": "https://github.com/open-pay/openpay-php/issues",
+                "source": "https://github.com/open-pay/openpay-php/tree/master"
+            },
+            "time": "2021-09-10T21:42:58+00:00"
+        },
+        {
             "name": "opis/closure",
             "version": "3.6.2",
             "source": {
@@ -2353,6 +2405,71 @@
                 "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "perafan/cashier-openpay",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Perafan18/cashier-openpay.git",
+                "reference": "bfef194c6bdeb0adb3f8ddeaa6f3d2ecbaa9b027"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Perafan18/cashier-openpay/zipball/bfef194c6bdeb0adb3f8ddeaa6f3d2ecbaa9b027",
+                "reference": "bfef194c6bdeb0adb3f8ddeaa6f3d2ecbaa9b027",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "~6|~7|~8",
+                "openpay/sdk": "dev-master"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3|~4",
+                "phpunit/phpunit": "^8.0",
+                "sempro/phpunit-pretty-print": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Perafan\\CashierOpenpay\\CashierOpenpayServiceProvider"
+                    ],
+                    "aliases": {
+                        "CashierOpenpay": "Perafan\\CashierOpenpay\\Facades\\CashierOpenpay"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Perafan\\CashierOpenpay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pedro Perafán Carrasco",
+                    "email": "pedro.perafan.carrasco@gmail.com"
+                }
+            ],
+            "description": "Laravel Cashier provides an expressive, fluent interface to Openpay's subscription billing services.",
+            "homepage": "https://github.com/Perafan18/cashier-openpay",
+            "keywords": [
+                "OpenPay",
+                "billing",
+                "cashier",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/Perafan18/cashier-openpay/issues",
+                "source": "https://github.com/Perafan18/cashier-openpay/tree/2.0.0"
+            },
+            "time": "2020-10-17T07:47:32+00:00"
         },
         {
             "name": "phpoption/phpoption",
