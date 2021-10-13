@@ -34,7 +34,7 @@ class StudentController extends Controller
 
         // return view('admin.student.dashboard',compact('postulations'));
 
-        $students = Student::orderBy('id')->paginate(1);
+        $students = Student::orderBy('created_at')->paginate(5);
         return view('students.index',compact('students'));
     }
 
@@ -99,18 +99,18 @@ class StudentController extends Controller
         (isset($completed->personal)) ? ($personal = $completed->personal) : $personal = 0;
         (isset($completed->education)) ? ($education = $completed->education) : $education = 0;
         // $education = $completed->education;
-        return $total = $personal+$education;
+        $total = $personal+$education;
 
-        $per = round(($total/20)*100,2);
+        $per = user()->profile->percentage;
 
         return view('students.edit',compact('student','categories','subcategories','countries','states','cities','skills','languages','software','per'));
     }
 
     public function show(Student $student){
 
-        // return $student->user->photo->path;
-        // $student = User::find(7);
-        return view('students.profile',compact('student'));
+        $per = $student->percentage;
+
+        return view('students.profile',compact('student','per'));
     }
 
 
@@ -169,7 +169,9 @@ class StudentController extends Controller
         $software = Software::all();
         $vacancies = Vacancy::all();
 
-        $per = 0;
+        $per = user()->profile->percentage;
+
+
 
         if(!user()->hasStudentProfile) return view('admin.student.profile.create',compact('categories','subcategories','countries','states','cities','skills','languages','software','per'));
         $student = Student::find(user()->profile->id);
@@ -192,6 +194,7 @@ class StudentController extends Controller
             'preference'    =>  'nullable',
             'hobbies'       =>  'nullable',
             'website'       =>  'nullable',
+            'avatar'        =>  'nullable|image'
         ]);
 
 
@@ -215,6 +218,7 @@ class StudentController extends Controller
 
         ]);
 
+        user()->profile->avatar()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
 
         return back();
     }

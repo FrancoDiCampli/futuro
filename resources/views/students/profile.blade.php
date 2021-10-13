@@ -36,27 +36,29 @@
     <div>
         <h1 class="my-10 text-2xl font-semibold" >{{$student->title}}</h1>
     </div>
-    <h1>{{$per}}</h1>
+
     <div class="container flex mt-10 text-xs text-gray-600">
 
-        <div class="w-8/12 content"
-            x-data="{ width: '20' }"
-            x-init="$watch('width', value => { if (value > 100) { width = 100 } if (value == 0) { width = 10 } })">
+        <div class="w-8/12 content">
              <!-- Start Regular with text version -->
-             <div
-             class="h-5 my-5 bg-blue-200 rounded-full"
-             role="progressbar"
-             :aria-valuenow="width"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             >
-             <div
-                 class="h-5 text-sm text-center text-white transition rounded-full bg-main-blue "
-                 :style="`width: ${width}%; transition: width 2s;`"
-                 x-text="`${width}% perfil completado`"
-                 >
-             </div>
-         </div>
+             @if(user()->hasRole('estudiante'))
+                <div
+                x-data="{ width: '{{$per}}' }"
+                x-init="$watch('width', value => { if (value > 100) { width = 100 } if (value == 0) { width = 10 } })"
+                class="h-5 my-5 bg-blue-200 rounded-full"
+                role="progressbar"
+                :aria-valuenow="width"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                >
+                    <div
+                        class="h-5 text-sm text-center text-white transition rounded-full bg-main-blue "
+                        :style="`width: ${width}%; transition: width 2s;`"
+                        x-text="`${width}% perfil completado`"
+                        >
+                    </div>
+                </div>
+             @endif
          <!-- End Regular with text version -->
 
             <div x-data="setup()">

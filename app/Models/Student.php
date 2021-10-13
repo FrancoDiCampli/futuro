@@ -82,10 +82,10 @@ class Student extends Model
         return $this->morphOne(\App\Models\User::class, 'profile');
     }
 
-    // public function avatar()
-    // {
-    //     return $this->morphOne(File::class, 'fileable');
-    // }
+    public function avatar()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 
     public function vacancies()
     {
@@ -105,10 +105,18 @@ class Student extends Model
 
     public function getPercentageAttribute(){
 
-        // $com = json_decode($this->completed);
+        $com = json_decode($this->completed);
+        // dd(isset($com->personal) ? true : false);
 
-        // return $total = intval($com->personal) + intval($com->education);
+        $personal = 0;
+        $education = 0;
 
-        // return round(($total/20) * 100,2);
+        if(isset($com->personal)) ($personal = intval($com->personal));
+        if(isset($com->education)) ($education = intval($com->education));
+
+        $total = $personal + $education;
+        if($total == 0) return 0;
+
+        return round(($total/17) * 100,2);
     }
 }

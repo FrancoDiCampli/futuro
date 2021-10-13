@@ -40,7 +40,7 @@ class VacancyController extends Controller
         if(isset(user()->profile->id)) {
             $postulation = Postulation::where('status','new')->where('student_id',user()->profile->id)->where('vacancy_id',$vacancy->id)->first();
 
-            if(user()->profile->completed> 50) $alert = false;
+            if(user()->profile->percentage>= 50) $alert = false;
         }
         if(isset($postulation))  $show = false;
 
