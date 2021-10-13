@@ -1,1 +1,3 @@
-@livewire('update-profile')
+{{-- @livewire('update-profile') --}}
+
+{{$student->percentage}}

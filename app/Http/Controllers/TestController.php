@@ -27,7 +27,9 @@ class TestController extends Controller
 
     public function test(){
 
-        return view('test.test');
+        $student = Student::find(1);
+
+        return view('test.test', compact('student'));
     }
 
 

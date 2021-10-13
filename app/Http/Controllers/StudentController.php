@@ -101,7 +101,7 @@ class StudentController extends Controller
         // $education = $completed->education;
         $total = $personal+$education;
 
-        $per = round(($total/20)*100,2);
+        $per = user()->profile->percentage;
 
         return view('students.edit',compact('student','categories','subcategories','countries','states','cities','skills','languages','software','per'));
     }
@@ -169,7 +169,9 @@ class StudentController extends Controller
         $software = Software::all();
         $vacancies = Vacancy::all();
 
-        $per = 0;
+        $per = user()->profile->percentage;
+
+        
 
         if(!user()->hasStudentProfile) return view('admin.student.profile.create',compact('categories','subcategories','countries','states','cities','skills','languages','software','per'));
         $student = Student::find(user()->profile->id);

@@ -36,11 +36,11 @@
     <div>
         <h1 class="my-10 text-2xl font-semibold" >{{$student->title}}</h1>
     </div>
-    <h1>{{$per}}</h1>
+
     <div class="container flex mt-10 text-xs text-gray-600">
 
         <div class="w-8/12 content"
-            x-data="{ width: '20' }"
+            x-data="{ width: '{{$per}}' }"
             x-init="$watch('width', value => { if (value > 100) { width = 100 } if (value == 0) { width = 10 } })">
              <!-- Start Regular with text version -->
              <div
@@ -50,6 +50,7 @@
              aria-valuemin="0"
              aria-valuemax="100"
              >
+             
              <div
                  class="h-5 text-sm text-center text-white transition rounded-full bg-main-blue "
                  :style="`width: ${width}%; transition: width 2s;`"

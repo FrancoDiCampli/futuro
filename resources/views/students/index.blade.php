@@ -44,9 +44,9 @@
         @foreach ($students as $student)
         <a href="{{route('students.show',$student->id)}}" class="card w-56 bg-white space-x-2 mx-1 text-gray-700 justify-center mt-5 cursor-pointer">
             @if(isset($student->photo->path) )
-                <img class="h-16 mt-5 mx-auto" alt="foto" src="{{$student->photo->path}}" alt="">
+                <img class="h-16 mt-5 mx-auto" alt="foto" src="{{ asset('storage/' . $student->photo->path) }}" alt="">
             @else
-                <img class="h-16 mt-5 mx-auto" src="{{asset('storage/user.png') }}" alt="user">
+                <img class="h-16 mt-5 mx-auto rounded-full" src="https://avatars0.githubusercontent.com/u/57622665?s=460&amp;u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&amp;v=4" alt="user">
 
             @endif
             <div class="my-5">
