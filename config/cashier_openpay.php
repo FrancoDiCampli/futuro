@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'model' => env('OPENPAY_MODEL', App\Models\User::class),
+    'model' => env('OPENPAY_MODEL', App\Models\Recruiter::class),
 
     /*
     |--------------------------------------------------------------------------

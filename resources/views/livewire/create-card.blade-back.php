@@ -7,7 +7,7 @@
 
     </div>
 
-    <button type="button" @click="test()" >Test</button>
+
     <div class="bg-white form">
         <form id="processCard" name="processCard">
         <div class="flex flex-wrap row">
@@ -49,7 +49,48 @@
             </div>
         </div>
 
+        <div class="flex flex-wrap row">
+            <div class="w-6/12 p-5">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Calle</label>
+                <input class="w-full px-5 text-base border border-gray-200 rounded-full"
+               wire:model="line1" data-openpay-card-address="line1"
+                    type="text">
+            </div>
+            <div class="w-3/12 p-5">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Altura</label>
+                <input class="w-full px-5 text-base border border-gray-200 rounded-full"
+               wire:model="line2" data-openpay-card-address="line2"
+                    type="text">
+            </div>
+            <div class="w-3/12 p-5">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">References</label>
+                <input class="w-full px-5 text-base border border-gray-200 rounded-full"
+                ata-openpay-card-address="line3"
+                    type="text">
+            </div>
+        </div>
 
+        <div class="flex flex-wrap row">
+            <div class="w-4/12 p-5">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Estado</label>
+                <input class="w-full px-5 text-base border border-gray-200 rounded-full"
+               wire:model="state" data-openpay-card-address="state"
+                    type="text">
+            </div>
+            <div class="w-4/12 p-5">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Ciudad</label>
+                <input class="w-full px-5 text-base border border-gray-200 rounded-full"
+               wire:model="city" data-openpay-card-address="city"
+                    type="text">
+            </div>
+            <div class="w-4/12 p-5">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">CP</label>
+                <input class="w-full px-5 text-base border border-gray-200 rounded-full"
+               wire:model="postal_code" data-openpay-card-address="postal_code"
+                    type="text">
+            </div>
+            <input type="text"wire:model="country_code" data-openpay-card-address="country_code" value="MX" class="hidden">
+        </div>
 
         <div class="flex justify-center ">
             <button wire:click='cancel' type="button" class="px-5 py-2 m-10 border rounded-full">Cancelar</button>
@@ -58,7 +99,5 @@
 
         </form>
     </div>
-
-
 
 </div>

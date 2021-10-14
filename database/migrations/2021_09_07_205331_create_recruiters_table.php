@@ -20,6 +20,8 @@ class CreateRecruitersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
+            $table->string('street_name');
+            $table->string('street_number');
             $table->boolean('belong_enterprise')->default(false);
             $table->integer('status');
             $table->foreignId('enterprise_id')->constrained();
