@@ -31,6 +31,8 @@ class RecruiterTableSeeder extends Seeder
         $recruiter = Recruiter::create([
                             'first_name'            =>'Juan',
                             'last_name'             =>'Perez',
+                            'street_name'           =>'Uruiza',
+                            'street_number'         =>'122',
                             'phone'                 =>'3735404737',
                             'belong_enterprise'     =>1,
                             'enterprise_id'         => 1,
@@ -52,8 +54,10 @@ class RecruiterTableSeeder extends Seeder
                             'first_name'            =>'Jon',
                             'last_name'             =>'Snow',
                             'phone'                 =>'422334223',
-                            'belong_enterprise'     =>1,
-                            'enterprise_id'         => 1,
+                            'street_name'           =>'Alvear',
+                            'street_number'         =>'1222',
+                            'belong_enterprise'     => 0,
+                            'enterprise_id'         => null,
                             'city_id'               => 2,
                             'status'                => 1,
         ]);

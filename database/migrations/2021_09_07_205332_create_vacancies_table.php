@@ -18,6 +18,7 @@ class CreateVacanciesTable extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->text('description');
             $table->text('looking_for');
             $table->string('hiring');
@@ -35,6 +36,7 @@ class CreateVacanciesTable extends Migration
             $table->foreignId('city_id')->constrained();
             $table->foreignId('subcategory_id')->constrained();
             $table->foreignId('recruiter_id')->constrained();
+            $table->foreignId('plan_id')->constrained();
 
             $table->string('status')->default('pending');
 

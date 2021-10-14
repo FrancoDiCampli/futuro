@@ -28,9 +28,11 @@ class VacancyFactory extends Factory
         $cities =  City::select('id')->get();
         $subcategories =  Subcategory::select('id')->get();
 
+        $title = $this->faker->sentence(4);
 
         return [
-            'title' => $this->faker->sentence(4),
+            'title' => $title,
+            'slug' => Str::slug($title),
             'description' => $this->faker->text,
             'looking_for' => $this->faker->text,
             'hiring' => $this->faker->randomElement(['Permanente','Temporario','Por proyecto','Becario']),
@@ -46,6 +48,7 @@ class VacancyFactory extends Factory
             'expired_at' => Carbon::today()->addDays(30),
             'city_id' =>$this->faker->randomElement($cities),
             'subcategory_id' => $this->faker->randomElement($subcategories),
+            'plan_id' => 1,
             'recruiter_id'=>rand(1,2)
         ];
     }

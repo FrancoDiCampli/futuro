@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-
+    @if(isset($students))
     <div class="flex items-center justify-between mt-5">
 
         {{ $students->links() }}
@@ -41,6 +41,7 @@
     </div>
 
     <div class="flex flex-wrap content">
+
         @foreach ($students as $student)
         <a href="{{route('students.show',$student->id)}}" class="justify-center w-56 mx-1 mt-5 space-x-2 text-gray-700 bg-white cursor-pointer card">
             @if(isset($student->user->photo) )
@@ -72,7 +73,9 @@
         </a>
         @endforeach
     </div>
-
+    @else
+        <h1>No posee un plan premiun activo</h1>
+    @endif
 
 
 </div>

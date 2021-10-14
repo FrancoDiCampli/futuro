@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Http\Traits\Transactionable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vacancy extends Model
 {
-    use HasFactory;
+    use HasFactory,Transactionable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,6 +17,7 @@ class Vacancy extends Model
      */
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'looking_for',
         'hiring',
@@ -29,10 +31,12 @@ class Vacancy extends Model
         'enterprise',
         'visible',
         'expired',
+        'status',
         'expired_at',
         'city_id',
         'subcategory_id',
         'recruiter_id',
+        'plan_id',
     ];
 
     const SKILLS = [
@@ -106,34 +110,6 @@ class Vacancy extends Model
         return $this->students()->wherePivot('status','final')->count();
     }
 
-    // public function scopeOfCity($query, $city)
-    // {
-    //     return $query->whereIn('city_id', $city);
-    // }
-
-    // public function scopeOfExperience($query, $experience)
-    // {
-    //     return $query->whereIn('experience', $experience);
-    // }
-
-    // public function scopeOfHiring($query, $hiring)
-    // {
-    //     return $query->whereIn('hiring', $hiring);
-    // }
-
-    // public function scopeOfAvailable($query, $available)
-    // {
-    //     return $query->whereIn('available', $available);
-    // }
-    // public function scopeOfSchedule($query, $schedule)
-    // {
-    //     return $query->whereIn('schedule', $schedule);
-    // }
-
-    // public function scopeOfCategory($query, $subcategory)
-    // {
-    //     return $query->whereIn('subcategory_id', $subcategory);
-    // }
 
     public function scopeFilter($query, $filters)
     {

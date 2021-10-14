@@ -9,11 +9,12 @@ use App\Models\State;
 use App\Models\Country;
 use App\Models\Vacancy;
 use App\Models\Category;
+use App\Models\Postulation;
 use App\Models\Subcategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreJobRequest;
-use App\Models\Postulation;
 
 class JobController extends Controller
 {
@@ -41,6 +42,7 @@ class JobController extends Controller
         $job = DB::transaction(function () use ($validated) {
             return Vacancy::create([
                         'title'         => $validated['title'],
+                        'slug'          => Str::slug($validated['title']),
                         'description'   => $validated['description'],
                         'looking_for'   => $validated['looking_for'],
                         'hiring'        => $validated['hiring'],

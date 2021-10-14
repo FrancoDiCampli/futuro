@@ -29,6 +29,7 @@ class StoreJobRequest extends FormRequest
 
         return [
             'title'         => 'required|max:255',
+            'slug'          => 'nullable',
             'description'   => 'required',
             'looking_for'   => 'required',
             'hiring'        => 'required',

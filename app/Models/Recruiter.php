@@ -19,6 +19,8 @@ class Recruiter extends Model
         'first_name',
         'last_name',
         'phone',
+        'street_name',
+        'street_number',
         'belong_enterprise',
         'enterprise_id',
         'city_id',
@@ -43,7 +45,7 @@ class Recruiter extends Model
         2   => 'suspended'
     ];
 
-    protected $appends = ['fullname'];
+    protected $appends = ['fullname','premiun_active'];
     public function city()
     {
         return $this->belongsTo(\App\Models\City::class);
@@ -66,5 +68,11 @@ class Recruiter extends Model
 
     public function getFullnameAttribute(){
         return $this->first_name.', '.$this->last_name;
+    }
+
+    public function getPremiunActiveAttribute(){
+        $vacancies = Vacancy::where('expired',0)->where('recruiter_id',user()->profile->id)->where('plan_id',2)->get();
+        if (count($vacancies)>0) return true;
+        return false;
     }
 }

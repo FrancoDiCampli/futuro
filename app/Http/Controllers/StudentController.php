@@ -33,8 +33,8 @@ class StudentController extends Controller
         // $postulations = user()->profile->vacancies;
 
         // return view('admin.student.dashboard',compact('postulations'));
-
-        $students = Student::orderBy('created_at')->paginate(5);
+        $students = null;
+        if(user()->profile->premiun_active) $students = Student::orderBy('created_at')->paginate(5);
         return view('students.index',compact('students'));
     }
 

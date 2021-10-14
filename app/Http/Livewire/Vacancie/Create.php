@@ -14,7 +14,8 @@ class Create extends Component
 {
     public $skills, $categories, $subcategories, $cities, $countries, $states, $step;
 
-    public $title, $category_id, $subcategory_id, $description, $looking_for, $state_id, $city_id, $experience, $hiring, $available, $schedule, $paid, $pretended, $enterprise, $visible;
+    public $title, $category_id, $subcategory_id;
+    public $description, $looking_for, $state_id, $city_id, $experience, $hiring, $available, $schedule, $paid, $pretended, $enterprise, $visible;
     public $skills_selected = [];
 
     public $totalSteps = 2;
@@ -23,6 +24,9 @@ class Create extends Component
     public $planActive = false;
     public $country = 1;
     public $vacancy_id;
+
+    public $category;
+    public $state;
 
     protected $rules = [
         'title' => 'required|min:6',
@@ -43,13 +47,14 @@ class Create extends Component
         'visible' => 'required',
         // 'country' => 'required',
     ];
-    
+
     public function mount()
     {
         $this->currentStep = 1;
         $this->skills =  Vacancy::SKILLS;
         $this->categories =  Category::all();
         $this->subcategories =  Subcategory::all();
+
         $this->cities =  City::all();
         $this->countries = Country::all();
         $this->states = State::all();
@@ -84,7 +89,7 @@ class Create extends Component
             $data['recruiter_id']  = user()->profile->id;
 
             $this->vacancy_id = $this->vacancy_id ? $this->vacancy_id->id : null;
-            
+
             $this->vacancy_id = Vacancy::updateOrCreate(['id' => $this->vacancy_id], [
                 'title'         => $data['title'],
                 'description'   => $data['description'],
@@ -106,11 +111,22 @@ class Create extends Component
             ]);
 
             session()->flash('message', $this->vacancy_id ? 'Vacante generada exitosamente. Estás a un paso de publicarla.' : 'Company created successfully.');
-        }       
+        }
     }
 
     public function render()
     {
+        if(!empty($this->category)) {
+            $this->subcategories = Subcategory::where('category_id', $this->category)->get();
+         }else{
+            $this->subcategories = Subcategory::all();
+         }
+
+         if(!empty($this->state)) {
+            $this->cities = City::where('state_id', $this->state)->get();
+         }else{
+            $this->cities = City::all();
+         }
         return view('livewire.vacancie.create');
     }
 }

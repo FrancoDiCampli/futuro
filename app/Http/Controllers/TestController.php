@@ -23,25 +23,26 @@ class TestController extends Controller
 
 
         $charge_data = [
-            'source_id' => 'kbenpwfd2fuo139tcavx',
+            'source_id' => 'kjregllbazvizpeun2qc',
             'method' => 'card',
             'currency' => 'MXN',
             'description' => 'Cargo inicial a mi merchant',
-            'order_id' => 'oid-00070',
+            'order_id' => 'oid-00071',
             'device_session_id' => 'kR1MiQhz2otdIuUlQkbEyitIqVMiI16f',
         ];
 
         $openpay_charge = user()->profile->charge(100, $charge_data);
-       return  $openpay_charge->id;
+        $openpay_charge->id;
 
         $vacancy = Vacancy::first();
         $trans = Transaction::create([
             'movable_type'=>'App\Models\Vacancy',
             'movable_id'=>$vacancy->id,
             'gateway'=>'openpay',
+            'charge_id'=>$openpay_charge->id,
             'user_id'=>user()->id,
             'amount'=>100,
-            'payload'=>json_encode($openpay_charge),
+            'payload'=>json_encode($openpay_charge->id),
         ]);
 
         return 'done';
