@@ -12,6 +12,7 @@ class VacancyController extends Controller
 {
     public function index($filters=null){
 
+
         // $post = user()->profile->vacancies->modelKeys();
 
         // $filters = [

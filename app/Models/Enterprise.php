@@ -61,4 +61,8 @@ class Enterprise extends Model
     {
         return $this->morphOne(File::class, 'fileable');
     }
+
+    public function vacancies(){
+        return $this->hasManyThrough(Vacancy::class,Recruiter::class);
+    }
 }

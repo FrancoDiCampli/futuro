@@ -17,3 +17,7 @@ function profile()
     return user()->profile;
 }
 
+function enterprise(){
+    return user()->profile->enterprise;
+}
+

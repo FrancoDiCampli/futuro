@@ -16,7 +16,7 @@ class VacancyTableSeeder extends Seeder
     public function run()
     {
         Vacancy::factory()
-                ->count(50)
+                ->count(20)
                 ->create();
 
 

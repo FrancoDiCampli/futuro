@@ -48,14 +48,15 @@ class DatabaseSeeder extends Seeder
             CityTableSeeder::class,
             SoftwareTableSeeder::class,
             LanguageTableSeeder::class,
-            EnterpriseTableSeeder::class,
-            RecruiterTableSeeder::class,
             PlanTableSeeder::class,
+            EnterpriseTableSeeder::class,
             VacancyTableSeeder::class,
-            StudentTableSeeder::class,
+
 
         ]);
+        // StudentTableSeeder::class,
 
+        // RecruiterTableSeeder::class,
 
 
 

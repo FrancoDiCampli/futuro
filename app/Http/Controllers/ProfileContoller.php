@@ -31,10 +31,17 @@ class ProfileContoller extends Controller
         return view('admin.admin');
     }
     public function enterpriseDashboard(){
+        $enterprise =  Enterprise::find(user()->profile->enterprise_id);
+
         $cities = City::all();
-        if(!user()->hasEnterpriseProfile) return view('admin.enterprise.complet',compact('cities'));
+        // if(!user()->hasEnterpriseProfile) return view('admin.enterprise.complet',compact('cities'));
         $recruiters =  Recruiter::where('enterprise_id',user()->profile->id)->get();
-        return view('admin.enterprise.dashboard',compact('recruiters'));
+
+        if($enterprise->main_recruiter === user()->profile->id){
+
+            return view('admin.enterprise.dashboard',compact('recruiters'));
+        }
+        return redirect()->route('dashboard');
     }
     public function studentDashboard(){
         if(!user()->hasStudentProfile) {

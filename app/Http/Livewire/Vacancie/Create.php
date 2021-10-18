@@ -164,5 +164,6 @@ class Create extends Component
         $this->cards =OpenpayCard::all([], $openpay_customer);
 
 
+
     }
 }

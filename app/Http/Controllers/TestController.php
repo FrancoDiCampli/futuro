@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 
 
+use Openpay;
 use App\Models\Vacancy;
 use App\Models\Recruiter;
 use App\Models\Transaction;
@@ -174,7 +175,7 @@ class TestController extends Controller
             'cvv2' => $request->cvv2,
             'expiration_month' => $request->expiration_month,
             'expiration_year' => $request->expiration_year,
-            'token_id' => $request->k8q8r0ynn8esftsjomhi,
+            'token_id' => $request->token_id,
             'device_session_id' => $request->deviceIdHiddenFieldName,
         ];
 

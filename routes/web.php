@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //Enterprise
-    Route::middleware(['role:enterprise'])->group(function () {
+    Route::middleware(['role:recruiter'])->group(function () {
         Route::get('/enterprise',[App\Http\Controllers\ProfileContoller::class,'enterpriseDashboard'])->name('enterprise.dashboard');
         Route::post('accept-recruiter',[App\Http\Controllers\EnterpriseController::class,'acceptRecruiter'])->name('accept.recruiter');
     });

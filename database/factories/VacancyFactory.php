@@ -49,7 +49,7 @@ class VacancyFactory extends Factory
             'city_id' =>$this->faker->randomElement($cities),
             'subcategory_id' => $this->faker->randomElement($subcategories),
             'plan_id' => 1,
-            'recruiter_id'=>rand(1,2)
+            'recruiter_id'=>1
         ];
     }
 }

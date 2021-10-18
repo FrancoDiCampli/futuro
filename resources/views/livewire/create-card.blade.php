@@ -7,7 +7,7 @@
 
     </div>
 
-    <button type="button" @click="test()" >Test</button>
+
     <div class="bg-white form">
         <form id="processCard" name="processCard">
         <div class="flex flex-wrap row">
