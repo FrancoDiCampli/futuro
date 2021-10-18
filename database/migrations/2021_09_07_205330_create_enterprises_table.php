@@ -27,6 +27,9 @@ class CreateEnterprisesTable extends Migration
             $table->string('rfc');
             $table->string('business_name');
             $table->foreignId('city_id')->constrained();
+            $table->unsignedBigInteger('main_recruiter')->nullable();
+
+
 
             $table->timestamps();
         });

@@ -25,6 +25,7 @@ class Enterprise extends Model
         'rfc',
         'business_name',
         'city_id',
+        'main_recruiter',
     ];
 
     /**
@@ -37,9 +38,14 @@ class Enterprise extends Model
         'city_id' => 'integer',
     ];
 
-    public function user()
-    {
-        return $this->morphOne(\App\Models\User::class, 'profile');
+    // public function user()
+    // {
+    //     return $this->morphOne(\App\Models\User::class, 'profile');
+    // }
+
+
+    public function main_recruiter(){
+        return $this->belongsTo(Recruiter::class);
     }
 
     public function city()

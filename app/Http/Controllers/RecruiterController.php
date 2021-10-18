@@ -12,11 +12,7 @@ use App\Models\Vacancy;
 class RecruiterController extends Controller
 {
 
-
-
-    public function store(Request $request){
-
-        return $request;
+    public function store(StoreRecruiterRequest $request){
 
         $validated =  $request->validated();
 
@@ -24,6 +20,8 @@ class RecruiterController extends Controller
             return Recruiter::create([
                                 'first_name'            =>$validated['first_name'],
                                 'last_name'             =>$validated['last_name'],
+                                'street_name'           =>$validated['street_name'],
+                                'street_number'         =>$validated['street_name'],
                                 'phone'                 =>$validated['phone'],
                                 'belong_enterprise'     =>$validated['belong_enterprise'],
                                 'enterprise_id'         => intval($validated['enterprise_id']),
@@ -36,6 +34,19 @@ class RecruiterController extends Controller
         user()->photo()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
         $recruiter->user()->save(user());
         user()->assignRole('recruiter');
+
+        $enterprise = Enterprise::find($recruiter->enterprise_id);
+
+        if(!isset($enterprise->main_recruiter)) {
+            $enterprise->update(['main_recruiter'=>$recruiter->id]);
+            $recruiter->update([
+                'status'=>1
+            ]);
+        }
+
+        if ($recruiter->status == 1){
+            return redirect()->route('recruiter.dashboard');
+        }
         return redirect()->route('blocked');
     }
 

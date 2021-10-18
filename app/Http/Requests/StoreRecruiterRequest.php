@@ -27,6 +27,8 @@ class StoreRecruiterRequest extends FormRequest
             'first_name'            =>'required',
             'last_name'             =>'required',
             'phone'                 =>'required',
+            'street_name'           =>'required',
+            'street_number'         =>'required',
             'belong_enterprise'     =>'required',
             'enterprise_id'         =>'required',
             'avatar'                => 'file',
@@ -37,14 +39,11 @@ class StoreRecruiterRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $enterprise = null;
+
         ($this->has('belong_enterprise')) ? ($belong_enterprise = 1) : ($belong_enterprise = 0);
-        // ($this->enterprise_id == "0")  ? ($enterprise = null) : ($enterprise = $this->enterprise_id);
-        // ($this->enterprise_id == "0") ? ($status = 1) :  ($status = 0);
 
         $this->merge([
             'belong_enterprise'     => $belong_enterprise,
-            // 'enterprise_id'         => $enterprise_id,
             'status'                => 0,
         ]);
     }

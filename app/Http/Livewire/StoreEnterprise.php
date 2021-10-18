@@ -34,6 +34,7 @@ class StoreEnterprise extends ModalComponent
     }
 
     public function save(){
+
         $this->validate([
             'name'          => 'required',
             'employees'     => 'required',
@@ -62,7 +63,7 @@ class StoreEnterprise extends ModalComponent
         ]);
 
         $enterprise->logo()->make()->upload($this->logo, 'logo/'.user()->id, 'logo');
-
+        $this->emit('updateEnterprises');
         $this->clearForm();
     }
 
@@ -83,6 +84,10 @@ class StoreEnterprise extends ModalComponent
         $this->business_name=null;
 
         $this->forceClose()->closeModal();
+
+
     }
+
+
 
 }

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'superadmin']);
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'student']);
-        Role::create(['name' => 'enterprise']);
+        // Role::create(['name' => 'enterprise']);
         Role::create(['name' => 'recruiter']);
 
         $superadmin = User::create([

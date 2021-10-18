@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\City;
+use App\Models\Recruiter;
 use App\Models\Enterprise;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EnterpriseFactory extends Factory
 {
@@ -35,6 +36,7 @@ class EnterpriseFactory extends Factory
             'rfc' => $this->faker->word,
             'business_name' => $this->faker->company,
             'city_id' => City::factory(),
+            'recruiter_id' => Recruiter::factory(),
         ];
     }
 }

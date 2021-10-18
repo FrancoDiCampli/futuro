@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 
 
 
-use Openpay;
+
+use App\Models\Vacancy;
 use App\Models\Recruiter;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Traits\FileTrait;
-use App\Models\Transaction;
-use App\Models\Vacancy;
-use Perafan\CashierOpenpay\Card;
 use Perafan\CashierOpenpay\Openpay\Card as OpenpayCard;
 use Perafan\CashierOpenpay\Openpay\Customer as OpenpayCustomer;
 
@@ -19,9 +18,13 @@ class TestController extends Controller
 {
     use FileTrait;
 
-    public function test(){
+    public function testx(){
 
 
+
+        return $openpay_card = OpenpayCard::find('kjregllbazvizpeun2qc');
+        $deleted_card = $openpay_card->delete();
+        return 'done';
         $charge_data = [
             'source_id' => 'kjregllbazvizpeun2qc',
             'method' => 'card',
@@ -51,12 +54,12 @@ class TestController extends Controller
         // $cards = $cards->asOpenpayCard();
         // dd($cards);
 
-        // $cards = Card::where('recruiter_id',user()->profile->id)->get();
+        $cards = Card::where('recruiter_id',user()->profile->id)->get();
 
-        // $cards = $cards->map(function($card) {
-        //     return $card->asOpenpayCard();
-        // });
-        // return view('test.test',compact('cards'));
+        $cards = $cards->map(function($card) {
+            return $card->asOpenpayCard();
+        });
+        return view('test.test',compact('cards'));
     }
 
 
@@ -196,8 +199,6 @@ class TestController extends Controller
 
 
     public function pay($plan,$card){
-
-
 
 
     }

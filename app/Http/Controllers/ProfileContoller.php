@@ -37,7 +37,6 @@ class ProfileContoller extends Controller
         return view('admin.enterprise.dashboard',compact('recruiters'));
     }
     public function studentDashboard(){
-
         if(!user()->hasStudentProfile) {
             $student = Student::create();
             $student->user()->save(user());

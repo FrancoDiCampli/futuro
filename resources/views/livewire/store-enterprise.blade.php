@@ -139,6 +139,7 @@
         <div class="flex justify-center ">
             <button wire:click='cancel' type="button" class="px-5 py-2 m-10 border rounded-full">Cancelar</button>
             <button wire:click='save' type="button" class="px-5 py-2 m-10 text-white border rounded-full bg-main-blue">Guardar</button>
+
         </div>
 
     </div>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\File;
 use App\Models\User;
+use App\Models\Recruiter;
 use App\Models\Enterprise;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -19,13 +20,7 @@ class EnterpriseTableSeeder extends Seeder
     public function run()
     {
 
-        $user = User::create([
-            'name' => 'danone',
-            'email' => 'danone@mail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdf1234'),
 
-        ]);
 
         $enterprise= Enterprise::create([
             'name'              =>'Danone',
@@ -38,6 +33,7 @@ class EnterpriseTableSeeder extends Seeder
             'rfc'               =>'23231341',
             'business_name'     =>'Danone SRL',
             'city_id'           =>1,
+            'main_recruiter'    =>null,
         ]);
 
         $file  = File::create([
@@ -51,8 +47,33 @@ class EnterpriseTableSeeder extends Seeder
             'fileable_id'       => $enterprise->id
         ]);
 
-        $enterprise->user()->save($user);
-        $user->assignRole('enterprise');
+
+        $user = User::create([
+            'name' => 'reclutador',
+            'email' => 'reclutador@mail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('asdf1234'),
+        ]);
+
+        $recruiter = Recruiter::create([
+                            'first_name'            =>'Juan',
+                            'last_name'             =>'Perez',
+                            'street_name'           =>'Uruiza',
+                            'street_number'         =>'122',
+                            'phone'                 =>'3735404737',
+                            'belong_enterprise'     => 1,
+                            'enterprise_id'         => 1,
+                            'city_id'               => 1,
+                            'status'                => 1,
+        ]);
+
+        $recruiter->user()->save($user);
+        $user->assignRole('recruiter');
+
+        $enterprise->update([
+            'main_recruiter'    =>$recruiter->id,
+        ]);
+
 
     }
 }

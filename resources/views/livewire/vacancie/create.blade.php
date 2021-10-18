@@ -115,11 +115,12 @@
             </div>
 
             <div class="w-6/12 px-10 py-5">
-                <label for="" class="block px-5 text-base font-semibold text-main-blue">Ciudad</label>
-                <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('city_id') border-red-500 @enderror" wire:model="city_id" id="">
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Ciudad*</label>
+                <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('city_id') border-red-500 @enderror"
+                    wire:model="city_id" id="">
 
                     @if (count($cities)>0)
-                        <option value="">Selecione una subcategoria</option>
+                        <option value="">Selecione una ciudad</option>
                         @foreach ($cities as $city)
                             <option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
@@ -134,8 +135,9 @@
         {{-- Expreciencia contratacion --}}
         <div class="flex flex-wrap row">
             <div class="w-6/12 px-10 py-5">
-                <label for="" class="block px-5 text-base font-semibold text-main-blue">Experiencia</label>
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Experiencia*</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('experience') border-red-500 @enderror" wire:model="experience" id="">
+                    <option value="">Seleccione una opcion</option>
                     <option value="Estudiante">Estudiante</option>
                     <option value="Graduado">Graduado</option>
                     <option value="1er año">1er año</option>
@@ -144,8 +146,9 @@
                 @error('experience')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
             </div>
             <div class="w-6/12 px-10 py-5">
-                <label for="" class="block px-5 text-base font-semibold text-main-blue">Contratacion</label>
+                <label for="" class="block px-5 text-base font-semibold text-main-blue">Contratacion*</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('hiring') border-red-500 @enderror" wire:model="hiring" id="">
+                    <option value="">Seleccione una opcion</option>
                     <option value="Permanente">Permanente</option>
                     <option value="Temporario">Temporario</option>
                     <option value="Por proyecto">Por proyecto</option>
@@ -161,6 +164,7 @@
                 <label for="" class="block px-5 text-base font-semibold text-main-blue">Disponibilidad</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('available') border-red-500 @enderror"
                 wire:model="available" id="">
+                    <option value="">Seleccione una opcion</option>
                     <option value="Tiempo completo">Tiempo completo</option>
                     <option value="Medio tiempo">Medio tiempo</option>
                 </select>
@@ -170,35 +174,40 @@
             <div class="w-6/12 px-10 py-5">
                 <label for="" class="block px-5 text-base font-semibold text-main-blue">Horario de preferiencia</label>
                 <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('schedule') border-red-500 @enderror" wire:model="schedule" id="">
+                    <option value="Sin preferencia">Sin preferencia</option>
                     <option value="Mañana">Mañana</option>
                     <option value="Tarde">Tarde</option>
-                    <option value="Sin preferencia">Sin preferencia</option>
                 </select>
                 @error('schedule')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
             </div>
         </div>
 
         {{-- Remunerado salario --}}
-        <div class="flex flex-wrap row">
-            <div class="w-6/12 px-10 py-5">
-                <label for="" class="block px-5 text-base font-semibold text-main-blue">Remunerado</label>
-                <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('paid') border-red-500 @enderror"
-                wire:model="paid" id="">
-                    <option value="0">Yes</option>
-                    <option value="1">No</option>
-                </select>
-                @error('paid')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
-            </div>
+        <div x-data="{ remunerado: false }">
+            <div class="flex flex-wrap row">
+                <div class="w-6/12 px-10 py-5">
+                    <label for="" class="block px-5 text-base font-semibold text-main-blue">Remunerado {{$paid}}</label>
+                    <select
+                        class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('paid') border-red-500 @enderror"
+                        wire:model="paid" id="">
+                        <option value="">Seleccione una opcion</option>
+                        <option value="false" >Yes</option>
+                        <option value="true" >No</option>
+                    </select>
+                    @error('paid')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
+                </div>
 
-            <div class="w-6/12 px-10 py-5">
-                <label for="" class="block px-5 text-base font-semibold text-main-blue">Rango de salario mensua</label>
-                <select class="rounded-full border border-gray-200 text-base w-full px-5 focus:outline-none @error('pretended') border-red-500 @enderror"
-                wire:model="pretended" id="">
-                    <option value="100">0-100</option>
-                    <option value="500">100-500</option>
-                    <option value="1000">500-1000</option>
-                </select>
-                @error('pretended')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
+                <div class="w-6/12 px-10 py-5">
+                    <label for="" class="block px-5 text-base font-semibold text-main-blue">Rango de salario mensual</label>
+                    <select :class="{ 'hidden': remunerado }" class="rounded-full border hidden border-gray-200 text-base w-full px-5 focus:outline-none @error('pretended') border-red-500 @enderror"
+                    wire:model="pretended" id="">
+                        <option value="">Seleccione una opcion</option>
+                        <option value="100">0-100</option>
+                        <option value="500">100-500</option>
+                        <option value="1000">500-1000</option>
+                    </select>
+                    @error('pretended')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
+                </div>
             </div>
         </div>
 
@@ -221,10 +230,10 @@
 
         {{-- Mostrar en perfil de empresa --}}
         <div class="px-10 py-5 row">
-            <label for="" class="block px-5 text-base font-semibold text-main-blue">¿Mostrar vacante en perfil de la empresa?</label>
+            <label for="" class="block px-5 text-base font-semibold text-main-blue">¿Mostrar vacante en perfil de la empresa?{{$visible}}</label>
             <div class="flex flex-wrap">
                 <div class="flex items-start w-3/12 px-2 my-5">
-                    <input type="checkbox" class="rounded-sm border-gray-200 mt-1 focus:outline-none @error('enterprise') border-red-500 @enderror" wire:model="enterprise" >
+                    <input type="checkbox"  class="rounded-sm border-gray-200 mt-1 focus:outline-none @error('enterprise') border-red-500 @enderror" wire:model="enterprise" >
                     <label class="block mx-2 font-semibold text-gray-400">Mostrar?</label>
                     @error('enterprise')<span class="text-xs text-red-500 ">{{$message}}</span>@enderror
                 </div>
@@ -253,6 +262,8 @@
     @if ($currentStep == 2)
     <div>
         <form wire:submit.prevent="payment" class="py-2 mb-10">
+            @include('livewire.vacancie.plan')
+
             <div class="flex justify-center">
                 @if ($currentStep == 2)
                 <button type="button" class="px-5 py-2 mr-4 font-semibold text-gray-700 bg-white border-2 rounded-full border-main-blue" wire:click="decreaseStep()">Regresar</button>
