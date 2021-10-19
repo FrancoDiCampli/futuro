@@ -39,6 +39,8 @@ class Vacancy extends Model
         'plan_id',
     ];
 
+
+
     const SKILLS = [
         'Autoconocimiento y Autoconfianza',
         'Inteligencia Emocional',

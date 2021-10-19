@@ -18,6 +18,7 @@ class CreateEnterprisesTable extends Migration
         Schema::create('enterprises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->integer('employees');
             $table->string('sector');
             $table->string('turn');

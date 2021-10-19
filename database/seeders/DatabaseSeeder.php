@@ -51,10 +51,10 @@ class DatabaseSeeder extends Seeder
             PlanTableSeeder::class,
             EnterpriseTableSeeder::class,
             VacancyTableSeeder::class,
+            StudentTableSeeder::class,
 
 
         ]);
-        // StudentTableSeeder::class,
 
         // RecruiterTableSeeder::class,
 

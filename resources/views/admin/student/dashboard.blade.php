@@ -3,14 +3,15 @@
 @section('content')
 
 <div class="w-10/12 mx-auto">
-    <h1 class="text-xxl text-main-blue text-center md:text-left md:text-4xl ">Mis  <span class="font-semibold">postulaciones</span> </h1>
-    <div class="flex justify-between mt-5 items-center">
-        <p class="">Mostrando 1 de 1</p>
+    <h1 class="text-center text-xxl text-main-blue md:text-left md:text-4xl ">Mis  <span class="font-semibold">postulaciones</span> </h1>
+    <div class="flex items-center justify-between mt-5">
+        {{-- <p class="">Mostrando 1 de 1</p> --}}
+        {{ $postulations->links() }}
     </div>
     <div x-data="setup()">
-        <ul class="flex justify-start items-center text-xs">
+        <ul class="flex items-center justify-start text-xs">
             <template x-for="(tab, index) in tabs" :key="index">
-                <li class="cursor-pointer bg-white rounded-full px-5 py-2 mx-5"
+                <li class="px-5 py-2 mx-5 bg-white rounded-full cursor-pointer"
                     :class="activeTab===index ? 'text-white bg-main-blue ' : ''" @click="activeTab = index"
                     x-text="tab"></li>
             </template>
@@ -19,22 +20,22 @@
         <div class="mx-auto">
             @if(count($postulations)>0)
             <div x-show="activeTab===0">
-                <div class="content flex flex-wrap">
+                <div class="flex flex-wrap content">
                     @include('admin.student.components.active')
                 </div>
             </div>
             <div x-show="activeTab===1">
-                <div class="content flex flex-wrap">
+                <div class="flex flex-wrap content">
                     @include('admin.student.components.invitation')
                 </div>
             </div>
             @else
-                <p class="text-main-blue text-sm font-semibold">No posee postulaciones activas</p>
+                <p class="text-sm font-semibold text-main-blue">No posee postulaciones activas</p>
             @endif
 
         </div>
     </div>
-    {{-- <div class="content flex flex-wrap">
+    {{-- <div class="flex flex-wrap content">
         @include('admin.student.components.active')
     </div> --}}
 </div>

@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="w-10/12 mx-auto">
+<div class="w-10/12 mx-auto" x-data="{ open: true }">
     <h1 class="text-center text-xxl text-main-blue md:text-left md:text-4xl ">Encuentra <span class="font-semibold">trabajo</span> </h1>
 
-    <div class="flex justify-between mt-12">
+    <div class="flex justify-between mt-12"  >
         <div class="flex items-center justify-start w-4/12 bg-white rounded-full search">
                 <div class="px-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 font-semibold transition duration-100 cursor-pointer text-main-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,9 +16,9 @@
         </div>
 
         <div class="flex items-center justify-between filters text-main-blue">
-            <p class="mx-5 font-semibold" x-data="{ show: true }">Filtros avanzados</p>
+            <p class="mx-5 font-semibold">Filtros avanzados</p>
             <div class="">
-                <svg aria-hidden="true" data-prefix="fas" data-icon="filter" class="w-5 svg-inline--fa fa-filter fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"/>
+                <svg  x-on:click="open = ! open" aria-hidden="true" data-prefix="fas" data-icon="filter" class="w-5 cursor-pointer svg-inline--fa fa-filter fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"/>
                 </svg>
             </div>
         </div>
@@ -27,77 +27,45 @@
 
     </div>
 
-    <div class="my-10 text-xs bg-white">
-        <h1>Filtros</h1>
-        <form action="" method="POST" >
-
-            <div class="flex flex-wrap row ">
+    <div x-show="open" class="my-10 text-xs bg-white"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform scale-90"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 transform scale-100"
+    x-transition:leave-end="opacity-0 transform scale-90"
+    >
+        <div class="flex flex-wrap row ">
+            <pre>{{$states}}</pre>
                 <div class="w-3/12 p-5">
-                    <span>{{$experience}}</span>
+
                     <label for="" class="block px-5 font-semibold text-main-blue">Estado</label>
-                    <select wire:model="experience"  class="w-full px-5 text-sm border border-gray-200 rounded-full focus:outline-none h-9"
-                        name="experience" id="">
-                       @foreach (Config::get('locations.states') as $state)
-                       <option value="{{$state}}">{{$state}}</option>
+                    <select wire:model="selectedState"  class="w-full px-5 text-sm border border-gray-200 rounded-full focus:outline-none h-9"
+                     >
+                     {{-- <option value="">Seleccione un estado</option> --}}
+                       @foreach (Config::get('locations.states') as $estado)
+                       <option value="1">{{$estado}}</option>
                        @endforeach
                     </select>
                 </div>
-                <div class="w-3/12 p-5">
-                    <span>{{$experience}}</span>
-                    <label for="" class="block px-5 font-semibold text-main-blue">Experiencia</label>
-                    <select wire:model="experience"  class="w-full px-5 text-sm border border-gray-200 rounded-full focus:outline-none h-9"
-                        name="experience" id="">
-                        <option value="Estudiante">Estudiante</option>
-                        <option value="Graduado">Graduado</option>
-                        <option value="1er año">1er año</option>
-                        <option value="2do año">2do año</option>
-                    </select>
-                </div>
-                <div class="w-3/12 p-5">
-                    <label for="" class="block px-5 font-semibold text-main-blue">Contratacion</label>
-                    <select class="w-full px-5 text-sm border border-gray-200 rounded-full focus:outline-none h-9"
-                    name="hiring" id="">
-                        <option value="Permanente">Permanente</option>
-                        <option value="Temporario">Temporario</option>
-                        <option value="Por proyecto">Por proyecto</option>
-                        <option value="Becario">Becario</option>
-                    </select>
-                </div>
-                <div class="w-3/12 p-5">
-                    <label for="" class="block px-5 font-semibold text-main-blue">Disponibilidad</label>
-                    <select class="w-full px-5 text-sm border border-gray-200 rounded-full focus:outline-none h-9"
-                        name="available" id="">
-                        <option value="Tiempo completo">Tiempo completo</option>
-                        <option value="Medio tiempo">Medio tiempo</option>
-                    </select>
-                </div>
+
             </div>
             <div class="flex justify-end p-5">
 
                 <button class="px-5 text-sm text-white rounded-full bg-main-blue py2">Buscar</button>
             </div>
-        </form>
+
     </div>
 
     <div class="flex items-center justify-between mt-5">
 
-        {{ $vacancies->links() }}
-        {{-- {{$vacancies->links()}} --}}
-        {{-- <div class="flex justify-around w-4/12 h-12 font-medium rounded-full">
+        {{-- {{ $vacancies->links() }} --}}
 
-            <div class="items-center justify-center hidden w-12 leading-5 text-white transition duration-150 ease-in border rounded-full cursor-pointer bg-lime md:flex ">1</div>
-            <div class="items-center justify-center hidden w-12 leading-5 transition duration-150 ease-in border rounded-full cursor-pointer md:flex ">2</div>
-            <div class="items-center justify-center hidden w-12 leading-5 transition duration-150 ease-in border rounded-full cursor-pointer md:flex ">3</div>
-            <div class="items-center justify-center hidden w-12 leading-5 transition duration-150 ease-in border rounded-full cursor-pointer md:flex ">...</div>
-            <div class="items-center justify-center hidden w-12 leading-5 transition duration-150 ease-in border rounded-full cursor-pointer md:flex ">14</div>
-            <div class="items-center justify-center hidden w-12 leading-5 transition duration-150 ease-in border rounded-full cursor-pointer md:flex ">15</div>
-
-        </div> --}}
     </div>
 
     <div class="flex flex-wrap content">
         @foreach ($vacancies as $vacancy)
-        <a href="{{route('vacancies.show',$vacancy->id)}}" class="justify-center w-56 mx-1 mt-5 space-x-2 text-gray-700 bg-white cursor-pointer card">
+        <a href="{{route('vacancies.show',$vacancy->slug)}}" class="justify-center w-56 mx-1 mt-5 space-x-2 text-gray-700 bg-white cursor-pointer card">
 
                 {{-- @if (isset($vacancy->recruiter->enterprise->user->photo))
 

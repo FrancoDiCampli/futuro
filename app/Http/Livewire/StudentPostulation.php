@@ -36,6 +36,6 @@ class StudentPostulation extends ModalComponent
         }
 
         $this->closeModal();
-        return redirect()->route('vacancies.show',$vacancy->id);
+        return redirect()->route('vacancies.show',$vacancy->slug);
     }
 }

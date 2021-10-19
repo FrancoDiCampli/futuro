@@ -31,8 +31,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('student-dashboard',[\App\Http\Controllers\StudentController::class,'dashboard'])->name('students.dashboard');
         Route::get('/student',[App\Http\Controllers\ProfileContoller::class,'studentDashboard'])->name('student.dashboard');
         Route::post('postulation',[App\Http\Controllers\JobController::class,'postulation'])->name('postulation');
-        Route::resource('vacancies', App\Http\Controllers\VacancyController::class)->except(['index']);
-        Route::resource('enterprises', App\Http\Controllers\EnterpriseController::class);
+        Route::resource('vacancies', App\Http\Controllers\VacancyController::class)->except(['index','show']);
+        Route::get('vacancies/{slug}',[App\Http\Controllers\VacancyController::class,'show'])->name('vacancies.show');
+
+        Route::resource('enterprises', App\Http\Controllers\EnterpriseController::class)->except(['show']);
+        Route::get('enterprises/{slug}',[App\Http\Controllers\EnterpriseController::class,'show'])->name('enterprises.show');
+
         Route::get('student-profile',[\App\Http\Controllers\StudentController::class,'profile'])->name('student.profile');
     });
 

@@ -24,7 +24,7 @@ class StudentController extends Controller
     use Profile;
     public function dashboard(){
         $postulations = [];
-        if(isset(user()->profile->id)) $postulations = Postulation::where('student_id',user()->profile->id)->get();
+        if(isset(user()->profile->id)) $postulations = Postulation::where('student_id',user()->profile->id)->paginate(2);
         return view('admin.student.dashboard',compact('postulations'));
     }
 
@@ -114,49 +114,6 @@ class StudentController extends Controller
     }
 
 
-    public function update(Request $request,Student $student){
-
-        $validated =  $request->validated();
-        $student = DB::transaction(function () use ($validated) {
-
-
-            $count =  20 - count($validated);
-            return Student::create([
-                            'first_name'        =>$validated['first_name'],
-                            'last_name'         =>$validated['last_name'],
-                            'tos'               =>$validated['tos'],
-                            'notification'      =>$validated['notification'],
-                            'title'             =>$validated['title'],
-                            'experience'        =>$validated['experience'],
-                            'university'        =>$validated['university'],
-                            'graduated_at'      =>$validated['graduated_at'],
-                            'average'           =>$validated['average'],
-                            'speech'            =>$validated['speech'],
-                            'available'         =>$validated['available'],
-                            'preference'        =>$validated['preference'],
-                            'skills'             =>$validated['skills'],
-                            'courses'           =>$validated['courses'],
-                            'hobbies'           =>$validated['hobbies'],
-                            'website'           =>$validated['website'],
-                            'birthdate'         =>$validated['birthdate'],
-                            'subcategory_id'    =>$validated['subcategory_id'],
-                            'city_id'           =>$validated['city_id'],
-                            'completed'         =>$completed
-
-            ]);
-        });
-
-
-
-        // $student->avatar()->make()->upload($validated['avatar'], 'avatar/'.$student->id, 'avatar');
-        user()->photo()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
-
-        $student->user()->save(user());
-
-        return redirect()->route('vacancies.index');
-
-    }
-
     public function profile(){
 
         $skills =  Vacancy::SKILLS;
@@ -181,7 +138,6 @@ class StudentController extends Controller
     }
 
     public function updateProfile(Request $request,Student $student){
-// return $request;
 
         $validated = $request->validate([
             'last_name'     => 'required|string',
@@ -217,8 +173,7 @@ class StudentController extends Controller
             'completed'     =>   json_encode($completed),
 
         ]);
-
-        user()->profile->avatar()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
+        if($request->has('avatar')) user()->profile->avatar()->make()->upload($validated['avatar'], 'avatar/'.user()->id, 'avatar');
 
         return back();
     }

@@ -4,24 +4,40 @@ namespace App\Http\Livewire;
 
 use App\Models\Vacancy;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Vacancies extends Component
 {
-    protected $vacancies;
+    use WithPagination;
+
     public $hiring;
     public $experience;
     public $available;
+    public $states;
 
+    public $filters;
+    public $selectedState = NULL;
+
+    public function mount(){
+        $this->filters = [
+
+        ];
+    }
 
     public function render()
     {
-        $filters = [
-            // 'experience'=>['Graduado']
+
+        return view('livewire.vacancies',['vacancies'=> Vacancy::Filter($this->filters)->orderBy('created_at','asc')->get()]);
+    }
+
+    public function updatedSelectedState($state){
+        $this->filters=[
+            'city_id' =>[$state]
         ];
 
-
-
-        $this->vacancies =  Vacancy::Filter($filters)->orderBy('created_at','asc')->paginate(12);
-        return view('livewire.vacancies',['vacancies'=>$this->vacancies]);
+        // $this->vacancies =  Vacancy::Filter($filters)->orderBy('created_at','asc')->get();
     }
+
+
+
 }

@@ -16,6 +16,7 @@ class Enterprise extends Model
      */
     protected $fillable = [
         'name',
+        'slug',
         'employees',
         'sector',
         'turn',

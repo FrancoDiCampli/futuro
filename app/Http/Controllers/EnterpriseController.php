@@ -54,8 +54,10 @@ class EnterpriseController extends Controller
         return redirect()->route('jobs.index');
     }
 
-    public function show(Enterprise $enterprise){
-        // return $enterprise->recruiters;
+    public function show($slug){
+
+        $enterprise = Enterprise::where('slug',$slug)->first();
+
         $vacancies = Vacancy::whereIn('recruiter_id',$enterprise->recruiters)->get();
        return view('enterprises.show',compact('enterprise','vacancies'));
     }

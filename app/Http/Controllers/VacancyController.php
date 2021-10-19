@@ -25,9 +25,12 @@ class VacancyController extends Controller
         return view('vacancy.index');
 
     }
-    public function show(Vacancy $vacancy){
+    public function show($slug){
 
-        $socials = Share::page(route('vacancies.show',$vacancy),$vacancy->title)
+        $vacancy = Vacancy::where('slug',$slug)->first();
+
+
+        $socials = Share::page(route('vacancies.show',$vacancy->slug),$vacancy->title)
                 ->facebook()
                 ->twitter()
                 ->linkedin()

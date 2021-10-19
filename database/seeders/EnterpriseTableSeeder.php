@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Models\Recruiter;
 use App\Models\Enterprise;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,7 @@ class EnterpriseTableSeeder extends Seeder
 
         $enterprise= Enterprise::create([
             'name'              =>'Danone',
+            'slug'              =>Str::slug('Danone'),
             'employees'         =>200,
             'sector'            =>'Alimentos',
             'turn'              =>'Mayoristas',
